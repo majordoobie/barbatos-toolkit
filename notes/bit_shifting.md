@@ -17,7 +17,7 @@ Logical OR operations are great for applying new values to your stream. Say we h
 11111010
 ```
 ## XOR / ^
-Logical XOR operations are great for creating unique masks. For example,you can use it to create a mask that extracts tha last 8 bits of an IP address to convert a stream back into dotted decimal.
+Logical XOR operations are great for creating unique masks. For example, you can use it to create a mask that extracts the last 8 bits of an IP address to convert a stream back into dotted decimal.
 ```
 10110111 10011011
 11111111 00000000  # But 0s in places you want to keep
