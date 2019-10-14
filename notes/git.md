@@ -72,6 +72,3 @@ Not all files belong to the remote repo such as a db or credentials file. You ca
 git fetch --all
 git reset --hard <remote>/<branch>
 ```
-
-  
-
