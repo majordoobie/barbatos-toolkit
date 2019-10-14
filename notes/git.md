@@ -60,7 +60,8 @@ Not all files belong to the remote repo such as a db or credentials file. You ca
 | ----------- | ----------- |
 | `git rm` | Removes a file from disc and from being tracked |
 | `git rm --cached <file>` | Removes file from being tracked but keeps it on disc |
-
+| `git fetch <remote_alias>` | Pulls the most recent information from the remote |
+| `git checkout FETCH_HEAD -- <file>` | Pulls a single file from remote and overwrite what is on disc |
 ---
 
 ## Force git pull
@@ -73,5 +74,4 @@ git reset --hard <remote>/<branch>
 ```
 
   
-| `git fetch <remote_alias>` | Pulls the most recent information from the remote |
-| `git checkout FETCH_HEAD -- <file>` | Pulls a single file from remote and overwrite what is on disc |
+
