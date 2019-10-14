@@ -41,7 +41,7 @@
 
 ### .gitignore {#5}
 ---
-Not all files belong to the remote repo such as a db or credentials file. You can use the `.gitignore` to create a \n seperated regex values for git to ignore.
+Not all files belong to the remote repo such as a db or credentials file. You can use the `.gitignore` to create a \n seperated regex values for git to ignore.  
 | Command | Description |
 | ----------- | ----------- |
 | `git rm` | Removes a file from disc and from being tracked |
