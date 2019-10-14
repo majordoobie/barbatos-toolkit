@@ -1,5 +1,6 @@
-[Heading ID](#1)
-[Heading 2](#2)
+[Git Basics](#1)  
+[Git Branches](#2)  
+[Merge with master](#3)
 
 ### Git basic {#1}
 ---
@@ -16,6 +17,16 @@ git commit -m <msg>
 | ----------- | ----------- |
 | `git branch` | List branches |
 | `git branch <branch>` | Create a new branch |  
+| `git status` | Tells you what branch you are in and status of files | 
+| `git checkout <branch>` | Checks out a branch you have already created | 
+
+### Merge with master {#3}
+---
+| Command | Description |
+| ----------- | ----------- |
+| `git checkout master` | Check out the branch you want to merge into |
+| `git merge <branch>` | Merges branch specified with the branch you are currently on |
+
 
 
 ### Force git pull
