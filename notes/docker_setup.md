@@ -6,6 +6,10 @@
 2. Identify the image that you want to download
 3. Create config files?
 
+## General notes
+
+> Dockers, unlike a VM, only runs until the service that it was ment to run is over. It is just a container to run a task. If there is no task it will die.
+
 ## Basic Commands
 
 | Command | Description |
@@ -13,7 +17,22 @@
 | `docker version` | List the version of docker that you are running |
 | `docker images` | Display all the images that you have downloaded |
 | `docker ps` | Show the running containers |
-| `docker stop <id>` | Stops a docker from running |
+| `docker ps -a` | Displays all running and *previously* running dockers
+| `docker stop <id/name>` | Stops a docker from running |
+| `docker rm <name>` | Permenetly delete an image from disc |
+| `docker images` | List all the images downloaded on disc |
+| `docker pull` | Pulls a docker image without running it |
+| `docker attach <id>` | If using `-d` to detach, you can re attach with this option |
+| `docker exec <image> <command(cat /etc/passwd)>` | Run commands in your container |
+| `docker exec -it <image> bash` | Get an interactive shell on the container |
+
+### Run Commands
+| Command | Description |
+| ------- | -------- |
+| `docker run <image>` | Runs the image if you have it downloaded, otherwise it will download it online |
+| `docker run -d <image>` | `-d` will background your docker so it does not hijack your terminal |
+| `docker run <image>:<tag>` | You can specify different versions or types of a container with the colon. Be default the <latest> tag will be used |
+
 
 ## Setting up PostGresSQL Docker
 
