@@ -1,5 +1,14 @@
 # Collection of Docker notes
 
+## What is Docker
+- Containers are completely isolated environments that share the same OS kernel
+- Docker is a LXC
+- You will not be able to run a windows based container on windows
+- When you install a linux container on windows, docker is spinning up a linux VM to host the container 
+- This does not have a performance draw back because it does not run a compelte OS
+
+![Container vs VM](../images/container_vs_vm.png)
+
 ## Basics
 
 1. Install the base docker applications from docker hub
@@ -88,5 +97,6 @@ ENTRYPOINT FLASK_APPP=/opt/source-code/app.py flask run
 
 ## Sources
 [Docker Tutorial](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=2711s)  
+[Docker Tutorial](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=1203s)  
 [PostGres Image](https://hub.docker.com/_/postgres)  
 [PG & Docker Tutorial](https://www.youtube.com/watch?v=aHbE3pTyG-Q)
