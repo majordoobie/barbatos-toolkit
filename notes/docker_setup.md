@@ -234,7 +234,31 @@ docker network ls
     - container layer which you ahve read and write access
     - image layer which has read access only such as your code
 - To modify your code you have to use the `copy-on-write` tehcnique where you are modifying the code in the container layer and then use build to get the new code
+
+# Docker Registry
+- There is a naming conventions of image names
+```
+docker.io/nginx/nginx
+{registry}/{user/account}/{image/repo}
+```
+- docker.io in this case is a public facing registry
+- to access a private registry you must log in first
+```
+docker login <private_registry>
+```
+
+# Docker Engine
+- When you install docker you are actually installing three components
+    - docker cli
+    - rest api
+    - docker deamon (manages docker objects like the containers themselves)
+- It is possible to remote control other docker damons with a docker CLI
+```
+docker -H=<ip>:<port> run nginx
+```
+
 ---
+
 
 # Setting up PostGresSQL Docker
 
