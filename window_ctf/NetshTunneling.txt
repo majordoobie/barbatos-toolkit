@@ -1,0 +1,20 @@
+Op station:
+nc -nvlp 4444
+
+T1: 
+ssh -M -S /tmp/T3 root@10.50.28.104 -R 4444:127.0.0.1:4444
+
+T2:
+netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=12345 connectaddress=10.169.0.10 connectport=4444
+
+netsh interface portproxy show all 
+netsh interface portproxy delete v4tov4 listenport=12345 listenaddress=0.0.0.0 
+
+function hacks {
+while ($true) {
+echo "Congrats! You are an 31337 H4x0r!" | C:\Tools\netcat\nc.exe -w 1 10.169.0.8 12345
+sleep 1 
+}}
+
+gatewayport == yes
+
