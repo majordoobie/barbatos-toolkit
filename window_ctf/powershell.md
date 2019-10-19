@@ -18,3 +18,8 @@ set-executionpolicy remotesigned -scope currentuser
 ```
 gci <path> | select-string -pattern <search>
 ```
+# Archives
+```
+Expand-Archive
+Compress-Archive
+```
