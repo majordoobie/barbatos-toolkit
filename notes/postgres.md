@@ -39,7 +39,11 @@ localhost:8080/api/v1/<db>
 - Downloaded and established a interactive terminal
 ```
 docker pull postgres
-docker run -d --name=pg_db -e POSTGRES_PASSWD=fucker postgres
+
+
+docker run -d --expose 127.0.0.1:5423:5432/tcp --name=pg_db \
+    -e POSTGRES_PASSWD=fucker postgres
+
 docker exec -it 6936af5eef80 bash
 ```
 - I did a PS of the container itself and I can see the creds in the enviromental `FUCKING YIKES`

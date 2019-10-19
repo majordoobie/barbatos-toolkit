@@ -1,6 +1,25 @@
 # Collection of Docker notes
 > Most of these notes and images are not my original idea. Most came from the source links in the bottom of this file.
 
+## Install docker on WSL1
+```
+sudo apt-get update
+
+# Dependancies
+sudo apt-get install apt-transport-https \
+ca-certificates curl \
+software-properties-common
+
+# Add keys
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+# Add repo for docker
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
+# Install dat bad boi
+sudo apt-get update
+sudo apt-get install docker-ce
+```
 ## What is Docker
 - Containers are completely isolated environments that share the same OS kernel
 - Docker is a LXC
@@ -26,13 +45,14 @@
 | `docker logs <id>` | Show stdout logs on a background container "run -d" |
 | `docker history <image>` | Shows each step of what docker is doing particularly when building your own image |
 
-### Run/Stop Images
+### Run/Stop Images [Run Documentation](https://docs.docker.com/engine/reference/commandline/run/)
 | Command | Description |
 | ------- | -------- |
 | `docker run <image>` | Runs the image if you have it downloaded, otherwise it will download it online |
 | `docker run -d <image>` | `-d` will background your docker so it does not hijack your terminal |
 | `docker run -d --name<nickname> <image>:<tag/version>` | `--name` gives your images a nickname |
 | `docker run -d --name<nickname> -p 5001:80 <image>:<tag/version>` | `-p` specifies the port mapping, more on the port mapping section |
+| `docker run -d -p 127.0.0.1:5001:80/tcp <image>` | To get access to the docker container you must create a localhost listener on the host machine that can reach the docker host |
 | `docker run -d --name<nickname> -p 5001:80 --link <nick>:<host> <image>:<tag/version>` | `--link` links containers together by adding a entry in the host file of the container |
 | `docker attach <id>` | If using `-d` to detach, you can re attach with this option |
 | `docker run <image>:<tag>` | You can specify different versions or types of a container with the colon. Be default the <latest> tag will be used |
@@ -265,4 +285,6 @@ docker -H=<ip>:<port> run nginx
 [Docker Tutorial](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=2711s)  
 [Docker Tutorial](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=1203s)  
 [PostGres Image](https://hub.docker.com/_/postgres)  
-[PG & Docker Tutorial](https://www.youtube.com/watch?v=aHbE3pTyG-Q)
+[PG & Docker Tutorial](https://www.youtube.com/watch?v=aHbE3pTyG-Q)  
+[Docker install on WSL](https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4)  
+[Docker Install on WSL](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly)
