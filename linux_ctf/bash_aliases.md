@@ -3,6 +3,10 @@
 ```
 [ -f "$HOME/.bash_aliases" ] && source "$HOME/.bash_aliases"
 ```
+## Modify VSC to use WSL
+```
+"terminal.integrated.shell.windows" : "C:\\Windows\\System32\\bash.exe"
+```
 ## Now add your stuff to .bash_aliases
 ```
 # COLORS
