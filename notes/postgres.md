@@ -1,4 +1,4 @@
-## Python asyncfpg 
+## Python asyncpg 
 [**Source Docs**](https://magicstack.github.io/asyncpg/current/index.html)
 
 > Connection pools allow you to create a pool of connections that can be shared this lowers
