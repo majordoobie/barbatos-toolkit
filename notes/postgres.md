@@ -149,26 +149,15 @@ services:
 
 
 ## Connecting to the Docker DB externally
-
 ```bash
-psql -h 127.0.0.1 -p <port> -U postgres
-# Promts for password
-localhost:8080/api/v1/<db>
+psql -h 127.0.0.1 -p <port> -U <user> -d <database>
 ```
 
-## coc.py
+### Random coc notes for testing
 ```
 pip install git+https://github.com/mathsman5133/coc.py --upgrade
-```
-### Establish a client object
-```
 client = coc.login(<email>, <passwd>)
-```
-### Malform tags
-```
+# Malforn fix
 coc.utils.correct_tag
-```
-### Rando
-```
 player = await client.get_player('#9P9PRYQJ')
 ```
