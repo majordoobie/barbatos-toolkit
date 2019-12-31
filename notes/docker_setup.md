@@ -45,7 +45,7 @@ sudo apt-get install docker-ce
 | `docker logs <id>` | Show stdout logs on a background container "run -d" |
 | `docker history <image>` | Shows each step of what docker is doing particularly when building your own image |
 
-### Run/Stop Images [Run Documentation](https://docs.docker.com/engine/reference/commandline/run/)
+## Run/Stop Images [Run Documentation](https://docs.docker.com/engine/reference/commandline/run/)
 | Command | Description |
 | ------- | -------- |
 | `docker run <image>` | Runs the image if you have it downloaded, otherwise it will download it online |
@@ -67,6 +67,12 @@ sudo apt-get install docker-ce
 | `docker ps -a` | Displays all running and *previously* running dockers |
 | `docker inspect <image>` | Return the JSON payload that configured the image |
 
+## Getting interactive in a non interactive image
+```
+docker create -it --name frosch_dev python
+docker start frosch_dev
+docker exec -it frosch_dev bash
+```
 ## Networking
 | Command | Description |
 | ------- | -------- |

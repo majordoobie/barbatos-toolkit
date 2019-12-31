@@ -1,5 +1,126 @@
+## Python asyncfpg 
+[**Source Docs**](https://magicstack.github.io/asyncpg/current/index.html)
 
-# Setting up PostGresSQL Docker
+> Connection pools allow you to create a pool of connections that can be shared this lowers
+the amount of resources needed and it proven to be up to 6 times faster than manually establishing
+connections when needed to interact with the database.
+```python
+# Establish a pool of connections
+import asyncio, asyncpg
+loop = asyncio.get_event_loop()
+postgres = "dsn string"
+pool = await loop.run_until_complete(asyncpg.create_pool(postgres, command_timeout=60))
+```
+> The pool of connections is just that, a pool. To interact with the database you must fist request
+for a connection from the pool. This is done by using the `acquire()` method. With a connection
+acquired, you can then run your tasks. When complete you return the connection back to the pool
+by using a `release()`. What is confusing is that `release()` is a method of the `pool` object so 
+when you invoke it you have to pass the connections as an argument.
+```python
+# Request connection and release
+con = await pool.acquire()
+await pool.release(con)
+```
+### Acquiring connections
+> As mentioned above, you must request a connection from the pool in order to communicate with the
+database and then release the connection. You can do this in two ways. Manually as shown above and
+using the `with` context manager.
+
+#### `1` Manually
+```python
+con = await pool.acquire()
+try:
+    await con.execute(...)
+finally:
+    await pool.release(con)
+```
+### `2` Context with
+```python
+async with pool.acquire() as con:
+    await con.execute(...)
+```
+### Closing connections
+> This one can be as simple as issuing a `await pool.close()` but there can be a time when
+you are stuck waiting for some tasks to finish this is why it is advised to use the 
+`coroutine asyncio.wait_for()` this will cause a an error to raise which instructs the pool to send
+a `Pool.terminate()` to the connection. This prevents you from waiting for ever and still gracefully
+with force to close the connection
+```python
+# Wait a max of 3 seconds before sending terminate()
+try:
+    await asyncio.wait_for(pool.close(), timeout=3.0)
+except asyncio.TimeoutError:
+    print("Automatically sent a terminate()")
+```
+### Other methods
+```python
+# Request a connection
+con = await pool.acquire()
+
+# Perform sql
+await con.execute(sql)
+await con.executre('''
+    INSERT INTO table (a) VALUES (100), (200), (300);''')
+await con.execute('''
+    INSERT INTO table (a) VALUES ($1), ($2)
+    ''', 10, 20)
+
+# Perform sql on each item in a container
+await con.execut('''
+    INSERT INTO table (a) VALUES ($1, $2, $3);
+    ''', [(1, 2, 3), (4, 5, 6)])
+
+# Retrieve information
+await con.fetch(sql) # all records
+await con.fetchrow(sql) # First record
+await con.fetchval(sql, 0) # First record, nth index
+
+# Release connection
+await pool.release(con, timeout=seconds.float)
+
+# Return all open connections back to the pool
+await con.expire_connections()
+```
+
+### Record objects
+> Record objects (those that return from a fetch) have very neat characteristics. They can be accessed
+via their index or their column name.
+```python
+record = "fetch_object"
+record[0] == record['first_column']
+```
+> You can even cast the record object into a `dict` or `tuple`
+```python
+record = "fetch_object"
+record_dict = dict(record)
+record_tuple = tuple(record)
+```
+ 
+
+## Docker-composed used
+```dockerfile
+version: '3.7'
+services:
+  frosch_postgres:
+    container_name: frosch_postgres
+    image: postgres:12.1-alpine
+    restart: always
+    networks:
+      - zulu_network
+    environment:
+      POSTGRES_USER: pgadmin4life
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: pantherdb
+      POSTGRES_PORT: 5432
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - frosh_db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+```
+
+
+## Setting up PostGresSQL Docker
 
 | Command | Description |
 | ------- | -------- |
@@ -35,49 +156,6 @@ psql -h 127.0.0.1 -p <port> -U postgres
 localhost:8080/api/v1/<db>
 ```
 
-## Live Experimental
-- Downloaded and established a interactive terminal
-```
-docker pull postgres
-
-
-docker run -d --expose 127.0.0.1:5423:5432/tcp --name=pg_db \
-    -e POSTGRES_PASSWD=fucker postgres
-
-docker exec -it 6936af5eef80 bash
-```
-- I did a PS of the container itself and I can see the creds in the enviromental `FUCKING YIKES`
-- Running the psql gave me access without cred prompting. I am assuming that it is because it matched the creds of the box? Well I supposed the creds were passed in the environment so maybe it used that? `magic`
-```
-psql -U postgres
-```
-
-# Potential Schema
-```
-user_registration(
-    coc_tag             :   player.tag                      :str
-    coc_name            :   player.name                     :str
-
-    coc_clan_name       :   player.clan.name                :str
-    coc_clan_tag        :   player.clan.tag                 :str
-    coc_clan_share_link :   player.clan.share_link          :str
-
-    coc_badge_url       :   player.league.badge.small       :str
-    coc_townhall_level  :   player.town_hall                :int
-    coc_trophies        :   player.trophies                 :int
-    coc_best_trophies   :   player.best_trophies            :int
-    coc_share_link      :   player.share_link               :str
-    coc_role            :   player.role                     :str
-    
-)
-```
-```
-user_update (
-    coc_war_stars       :   player.coc_war_stars            :int
-    coc_attack_wins     :   player.attack_wins              :int
-    coc_defense_wins    :   player.defense_wins             :int
-)
-```
 ## coc.py
 ```
 pip install git+https://github.com/mathsman5133/coc.py --upgrade
