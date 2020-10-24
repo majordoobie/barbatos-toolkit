@@ -14,7 +14,7 @@ RUN echo 'alias ll="ls -lart --color=auto"' >> ~/.bashrc
 RUN python -m pip install ipython
 RUN pip install --upgrade pip
 
-ENTRYPOINT ["cat"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]
 ```
 ```bash
 docker build -f /path/to/dockefile -t python_tag . 
