@@ -22,3 +22,8 @@ docker run -it --rm -d --name python_container --mount type=bind,source="$(pwd),
 docker exec -it python_container /bin/bash
 ```
 > The `--rm` will make sure the clean up the container when you stop it so it will leave your disk dirty. But the tag will still exits you can see it with `docker images`. So to spin it back up you just need the run line again
+
+## Convert exception to string
+```python
+exc = ''.join(traceback.format_exception(type(error), error, error.__traceback__, chain=True))
+```
