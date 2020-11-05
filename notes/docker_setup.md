@@ -1,20 +1,25 @@
 # Collection of Docker notes
 > Most of these notes and images are not my original idea. Most came from the source links in the bottom of this file.
 
+
 ## Install docker on WSL1
 ```
 sudo apt-get update
+
 
 # Dependancies
 sudo apt-get install apt-transport-https \
 ca-certificates curl \
 software-properties-common
 
+
 # Add keys
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 
+
 # Add repo for docker
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+
 
 # Install dat bad boi
 sudo apt-get update
@@ -27,13 +32,18 @@ sudo apt-get install docker-ce
 - When you install a linux container on windows, docker is spinning up a linux VM to host the container 
 - This does not have a performance draw back because it does not run a compelte OS
 
+
 ![Container vs VM](../images/container_vs_vm.png)
+
 
 ## General notes
 
+
 > Dockers, unlike a VM, only runs until the service that it was ment to run is over. It is just a container to run a task. If there is no task it will die.
 
+
 ## Basic Commands
+
 
 | Command | Description |
 | ------- | -------- |
@@ -44,6 +54,7 @@ sudo apt-get install docker-ce
 | `docker pull` | Pulls a docker image without running it |
 | `docker logs <id>` | Show stdout logs on a background container "run -d" |
 | `docker history <image>` | Shows each step of what docker is doing particularly when building your own image |
+
 
 ## Run/Stop Images [Run Documentation](https://docs.docker.com/engine/reference/commandline/run/)
 | Command | Description |
@@ -60,12 +71,14 @@ sudo apt-get install docker-ce
 | `docker exec <image> <command(cat /etc/passwd)>` | Run commands in your container |
 | `docker exec -it <image> bash` | Get an interactive shell on the container |
 
+
 ## Show running images
 | Command | Description |
 | ------- | -------- |
 | `docker ps` | Show the running containers |
 | `docker ps -a` | Displays all running and *previously* running dockers |
 | `docker inspect <image>` | Return the JSON payload that configured the image |
+
 
 ## Getting interactive in a non interactive image
 ```
@@ -80,6 +93,7 @@ docker exec -it frosch_dev bash
 | `docker network create <args>` | create additional bridge networks, more info below |
 | `docker inspect <image>` | View json payload that shows the networking settings
 
+
 ## Port mapping
 - When you run a container it runs within the docker host
 - If you run a container that listens on port 5000, the container is the one listening on 5000 on a internal IP within the docker host
@@ -90,6 +104,7 @@ docker run -p 8000:5000 <image/name>
 docker run -p 8001:5000 <image/name>
 ```
 
+
 ## Volume mapping
 - For data to persist, you must map a directory with your container
 ```
@@ -98,10 +113,12 @@ docker run -v /opt/datadir:/var/lib/data <image>
 ```
 - To create one you must use the docker create command
 
+
 | Command | Description |
 | ------- | -------- |
 | `docker volume create <dir>` | Creates a new volumne on the docker directories for an image to use |
 | `docker run -v <dir>:<image_dir> <image>` | Mount a local directory in the host os with the container |
+
 
 ### Volume Mounting vs Volume Bind
 - There are two types of mounts you can use
@@ -118,8 +135,10 @@ docker run --mount type=bind,source=/full/dir,target=/target/dir <image>
 docker run --mount type=volume,source=<docker_volume>,--target=/target/dir <image>
 ```
 
+
 # Composing dockers with YAML
 - Instead of manually running/pulling different images you can create a yaml file that pulls all the images for you in one swoop
+
 
 ### Sample of the file `docker-compose.yml`
 ```
@@ -139,6 +158,7 @@ services:
         network:
             <network_name>
 
+
 networks:
     <network_name>:
     <network_name2>:
@@ -148,11 +168,13 @@ networks:
 docker-compose up
 ```
 
+
 # Example of Setting Up an Image
 ## `1` Set up the docker file
 ```
 # Must require an OS or Image to run
 FROM Ubuntu                                       
+
 
 # Install dependencies, obvi install based on versions
 RUN apt-get update
@@ -160,8 +182,10 @@ RUN apt-get install python
 RUN pip install flask
 RUN pip install flask-mysql
 
+
 # Copy the code to the container 
 COPY . /opt/source-code
+
 
 # Tell docker how to execute the code
 ENTRYPOINT FLASK_APP=/opt/source-code/app.py flask run
@@ -178,6 +202,7 @@ docker build $dockerfile -t <image>
 docker push <image>
 ```
 
+
 # Docker image files
 ## CMD
 - The CMD command can either have a string or an array of commands and args to follow
@@ -186,6 +211,7 @@ CMD ["command", "arg"]
 or
 CMD command arg
 ```
+
 
 ## ENTRYPOINT
 - You can specify a command to invoke automatically so that any arguments you pass to the `docker run` will automatically be passed to this command
@@ -196,6 +222,7 @@ ENTRYPOINT ["command"]
 ```
 docker run <image> <arg>
 ```
+
 
 ## CMD + ENTRYPOINT
 - You can speficy default values to your command by using both CMD and ENTRYPOINT. If no arguments are used when calling the docker run then the argument in CMD will be used. Otherwise the command line argument will replace this default value
@@ -210,15 +237,18 @@ or
 docker run <image>  # Now "default_arg" is passed
 ```
 
+
 # Docker Networking
 - Three networks are set up automatically
     - bridge
     - none
     - host
 
+
 ## Bridge
 - this one is used when you run `docker run <image>`
 - All containers within the host docker will have access to each other by using this method
+
 
 ## Host
 - You can assign the host os networking by specifying 
@@ -227,8 +257,10 @@ docker run <image> --network=host
 ```
 - that means that you do not need to port map in this case
 
+
 ## None
 - The container is isolated by itself
+
 
 ## Multiple internal networks
 - By default, docker only makes one internal network
@@ -239,13 +271,16 @@ docker network create \
     --subnet <ip>/<cidr>
     <name_of_network>
 
+
 # Then view network with 
 docker network ls
 ```
 
+
 ## Best practice
 - It is best practice **NOT** to use private IP address when attempting to configure containers that communicate with each other because those IPs can change
 - Instead, you want to leverage the docker dns and utilize the container names to communicate between containers
+
 
 # Volumes
 - When you install docker on a system it creates a filesystem such as
@@ -261,6 +296,7 @@ docker network ls
     - image layer which has read access only such as your code
 - To modify your code you have to use the `copy-on-write` tehcnique where you are modifying the code in the container layer and then use build to get the new code
 
+
 # Docker Registry
 - There is a naming conventions of image names
 ```
@@ -273,6 +309,7 @@ docker.io/nginx/nginx
 docker login <private_registry>
 ```
 
+
 # Docker Engine
 - When you install docker you are actually installing three components
     - docker cli
@@ -283,7 +320,9 @@ docker login <private_registry>
 docker -H=<ip>:<port> run nginx
 ```
 
+
 ---
+
 
 # Quick python instance
 ```Dockerfile
@@ -291,8 +330,10 @@ FROM python:3 # Installs the latest should be debian image at this time also don
 WORKDIR /code
 RUN echo 'alias ll="ls -lart --color=auto"' >> ~/.bashrc
 
+
 RUN python -m pip install ipython
 RUN pip install --upgrade pip
+
 
 ENTRYPOINT ["tail", "-f", "/dev/null"]
 ```
@@ -304,6 +345,8 @@ docker exec -it python_container /bin/bash
 > The `--rm` will make sure the clean up the container when you stop it so it will leave your disk dirty. But the tag will still exits you can see it with `docker images`. So to spin it back up you just need the run line again
 
 
+
+
 # Sources
 [Docker Tutorial](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=2711s)  
 [Docker Tutorial](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=1203s)  
@@ -311,3 +354,6 @@ docker exec -it python_container /bin/bash
 [PG & Docker Tutorial](https://www.youtube.com/watch?v=aHbE3pTyG-Q)  
 [Docker install on WSL](https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4)  
 [Docker Install on WSL](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly)
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTg1ODI5MTgxOF19
+-->
