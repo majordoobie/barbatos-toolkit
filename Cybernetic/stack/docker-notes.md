@@ -11,7 +11,7 @@
 ### Images vs Containers
 Images are the OS's that someone has built. There is a few root ones that all others are essentially based on. A large majority of images are based on Debian, Pine or some other operating system. Then developers take those base images and tweak them for what they need. 
 
-Let's take the [Postgres](https://github.com/docker-library/postgres/blob/ba302205a1300a5ad262ee770f7ac8a1038e8fde/13/Dockerfile)
+Let's take the [Postgres](https://github.com/docker-library/postgres/blob/ba302205a1300a5ad262ee770f7ac8a1038e8fde/13/Dockerfile) image as an example. Postgres is a well know database. Their image isn't just a Postgres binary, it's a ``
 
 ## Running Docker
 - There are 3 common ways to run docker.
@@ -29,11 +29,11 @@ The line above will pull a node image if it's not already available and start a 
 There are even more switches that you can add to fine tune the container. This can lead to a gurthy command line. To avoid this you use Docker files to try to consolidate 
 
 ### Docker through Dockerfile
-A Dockerfile deines how an image is built, not how it is used. So you won't be able to port over all the CLI commands here.
+A Dockerfile defines how an image is built, not how it is used. So you won't be able to port over all the CLI commands here.
 
 Dockerfile is a textfile containing all the configurations needed to build an image. Unlike using the CLI, you can also add more configurations to it like using the `RUN` which runs OS level commands such as downloading additional packages for the OS.
 
-The following is a Dockerfile the replaces the command in Docker through CLI
+The following is a Dockerfile the replaces the build portions of the CLI and adds extra build commands to showcase the power of it.
 ```Dockerfile
 FROM node:8
 WORKDIR /usr/src/app
