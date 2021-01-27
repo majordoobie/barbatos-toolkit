@@ -9,9 +9,9 @@
 ![](Pasted%20image%2020210127162358.png)
 
 ### Images vs Containers
-Images are the OS's that someone has built. There is a few root ones that all others are essentially based on. A large majority of images are based on Debian, Pine or some other operating system. Then developers take those base images and tweak them for what they need. 
+Images are the OS's that someone has built. There is a few root ones that all others are essentially based on. A large majority of images are based on Debian, Pine or some other stripped down operating system. Then developers take those base images and tweak them for what they need. 
 
-Let's take the [Postgres](https://github.com/docker-library/postgres/blob/ba302205a1300a5ad262ee770f7ac8a1038e8fde/13/Dockerfile) image as an example. Postgres is a well know database. Their image isn't just a Postgres binary, it's a ``
+Let's take the [Postgres](https://github.com/docker-library/postgres/blob/ba302205a1300a5ad262ee770f7ac8a1038e8fde/13/Dockerfile) image as an example. Postgres is a well know database. Their image isn't just a Postgres binary, it's a `debian:buster-slim` operating system with the necessary Debian packages needed to run Postgres without any installation from the user. 
 
 ## Running Docker
 - There are 3 common ways to run docker.
@@ -38,8 +38,10 @@ The following is a Dockerfile the replaces the build portions of the CLI and add
 FROM node:8
 WORKDIR /usr/src/app
 EXPOSE 80/tcp
-
+RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)"
+CMD ["node", "your-daemon-or-script.js"]
 ```
+
 
 
 Commands needed:
