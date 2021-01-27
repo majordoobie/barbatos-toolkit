@@ -1,0 +1,72 @@
+" Enable Color
+"syntax enable 
+"syntax on
+filetype plugin on
+
+" Tabbing
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set autoindent
+
+" Rando
+set mouse=a		    " Helps with selecting text for copy pasta
+set number
+set modelines=1
+set cursorline     	" highlight current line
+set wildmenu 		" Set auto complete commands
+set showcmd		    " See the commands you are running in vim
+
+" searching
+set ignorecase
+set incsearch       " search as you type
+set hlsearch        " highlight search
+
+
+" highlight
+"syntax match timevar '^-- \[[0-9][0-9]:[0-9][0-9]:.*.'
+"syntax match timevar '^--.*--'
+"highlight timevar ctermfg=cyan ctermbg=black
+
+
+" Time stamps
+nmap <F5> i<C-R>=strftime("-- [%H:%M:%S %d-%m-%Y] --")<CR>
+imap <F5> <C-R>=strftime("-- [%H:%M:%S %d-%m-%Y] --")<CR>
+
+" Templates
+nmap <F6> i===============================<CR>== T#[] IP[] HN[] ==<CR>[KNOWNS]<CR><CR>{=====================================<CR>[ACCESS]<CR><CR>[SYS_INFO]----------------<CR><CR>[SYS_RESOURCES]-----------<CR><CR>[CRONS]-------------------<CR><CR>[LOGS]--------------------<CR><CR>[DIRECTORY]------------------<CR><CR>[BINARY]---------------<CR><CR>[TRIAGE_LATER]------------<CR><CR>[POST_CHECK]--------------<CR><CR>[BURN]--------------------<CR><CR>=====================================}<CR>
+
+imap <F6> ===============================<CR>== T#[] IP[] HN[] ==<CR>[KNOWNS]<CR><CR>{===============================<CR>[ACCESS]<CR><CR>[SYS_INFO]----------------<CR><CR>[SYS_RESOURCES]-----------<CR><CR>[CRONS]-------------------<CR><CR>[LOGS]--------------------<CR><CR>[DIRECTORY]------------------<CR><CR>[BINARY]---------------<CR><CR>[TRIAGE_LATER]------------<CR><CR>[POST_CHECK]--------------<CR><CR>[BURN]--------------------<CR><CR>=====================================}<CR>
+
+setlocal foldmethod=marker foldmarker={===============================,=====================================}
+
+
+inoremap <F9> <C-O>za
+nnoremap <F9> za
+onoremap <F9> <C-C>za
+vnoremap <F9> zf
+
+"==\sT#\[.{2,3}\sIP\[.*
+"
+" highlight
+syntax match sector /^{=*/
+syntax match sector /=*}$/
+highlight sector ctermfg=Yellow
+
+syntax keyword hostData IP HN
+syntax match hostData /T#/
+highlight hostData ctermfg=red
+
+syntax match sectionStart "^=\{31}"
+syntax match sectionStart "=\{2}"
+highlight sectionStart ctermfg=blue
+
+syntax match timevar /^-- \[[0-9][0-9]:[0-9][0-9]:.*./
+highlight timevar ctermfg=cyan ctermbg=black
+
+syntax match bullets "+\s"
+highlight bullets ctermfg=red
+
+syntax keyword KeyWordHi KNOWNS ACCESS SYS_INFO SYS_RESOURCES CRONS LOGS BINARY DIRECTORY TRIAGE_LATER POST_CHECK BURN
+highlight KeyWordHi ctermfg=magenta 

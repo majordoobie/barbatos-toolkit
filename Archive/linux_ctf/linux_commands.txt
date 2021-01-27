@@ -1,0 +1,486 @@
+find . -exec grep "10.20.169.13" {} \; -exec less {} \;
+find . \( -exec grep "10.20.169.13" {} \; -o -exec true \; \) -exec ls -lart {} \;
+
+
+=======================================================================================
+                                    KEK
+=======================================================================================
+-------------sysinfo---------------------
+# Paste date and pid in BURN
+date; date -u; echo $$
+
+# Networking info
+which ip && ip addr
+which ifconfig && ifconfig -a
+
+# Who's logged on and arch
+w; uname -a
+
+# Get OS version
+find /etc -maxdepth 1 -name \*release\* -type f -exec cat {} \;
+    #find /etc -name \*release\* -exec ls -lart {} \;
+    #find /etc -name \*release\* -type f -exec cat {} \;
+    #find /etc -maxdepth 1 -name \*release\* -type f -exec ls -lart {} \;
+    #/bin/ls /etc/*rele*
+
+
+
+# Clean slate search
+find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -10 -type f -print | xargs ls -latr
+sudo find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -15 -type f -print | xargs sudo ls -latr
+sudo find / \( -path /proc -prune -o -path /sys -prune -o -path /var/lib -prune \) -o -mmin -20 -type f -print | xargs sudo ls -latr
+
+
+# SELINUX
+which sestatus && sestatus -v 
+which sestatus || which getenforce
+# just run this REPORT IT
+sestatus -v 
+getenforce
+------------health----------------------
+df -H
+-------------cron-----------------------
+# run and don't look
+tail -n 1000 /var/spool/cron/*
+
+
+ls -lArtR /etc/*cron* /etc/*/*cron* /var/spool/* /etc/*syslog*
+sudo ls -lArtR /etc/*cron* /etc/*/*cron* /var/spool/* /etc/*syslog*
+
+--------------logs-----------------------
+# run and don't look
+/bin/ls -latr /var/*acc*
+/bin/ls -latr /var/log*/
+/bin/ls -la /etc/*syslog*
+
+
+# look at this shit
+ls -lArtR /*var/*log* /etc/*syslog* /var/*acc*
+sudo /bin/ls -lArtR /*var/*log* /var/*acc*
+
+////////// SPECIAL LOGS //////////
+# last -f
+ac -V
+lastcomm
+sudo dump-acct /var/account/pacct 
+# look at bash history
+
+# ODD LOGS
+// Journals
+    sudo journalctl -f /var/log/journal/8f54eac1f330469bace66b16279ddd5d/system.journal
+    sudo journalctl --since "2019-05-23 15:51:00"
+sudo journalctl --since "2019-06-03 14:50:00"
+
+// Process Accounting 
+    ac -V
+    lastcomm
+    sudo dump-acct /var/account/pacct
+////////// SPECIAL LOGS //////////
+--------------DIR-------------------------
+/bin/ls -lart /
+/bin/ls -lArtR /tmp
+/bin/ls -lart /opt
+/bin/ls -lArt /home
+sudo ls -lArtR /root
+/bin/ls -lart . ..
+
+# Bash Histories
+sudo find / -path /proc -prune -o -type f -iname \*.bash_history\* -exec sudo ls -lart {} \;
+sudo ls -lart /home/*/.bash_history /home/*/*/.bash_history /root/.bash_history
+sudo cat /root/.bash_history | less
+sudo cat ~/.bash_history | less
+
+/usr/lib/klibc/bin/ls
+sudo find / \( -path /proc -prune -o -path /sys -prune \) -o -group wheel -exec sudo ls -lart {} \;
+sudo find / \( -path /proc -prune -o -path /sys -prune \) -o -group users -exec sudo ls -lart {} \;
+
+--------------Binaries----------------------
+ps -HlAwwwef | less
+ps -eo euser,ruser,suser,fuser,f,comm,label
+ps -eF
+ps -q <pid> -HF
+
+# Get all related processes
+    ps -eF
+    ps -o sid= -p <pid>
+    ps -g <sid> -FH or ps -g <sid> --forest -F
+
+////////// SPECIAL PS //////////
++[Get process by name]
+    ps -C <name> -o uid,user,pid,ppid,tty,rss,vsz,%cpu,command
++[Get process by pid]
+    ps -q <pid> -o uid,user,pid,ppid,tty,rss,vsz,%cpu,command
++[Tree of processes by GSID]
+    ps --forest -o uid,user,pid,ppid,tty,rss,vsz,%cpu,command -g $(ps -o sid= -p <pid>)
+    or
+    ps -o sid= -p <pid>
+    ps --forest -o uid,user,pid,ppid,tty,rss,vsz,%cpu,command -g <guid>
++[Selinux]
+    ps -eo euser,ruser,suser,fuser,f,comm,label
+////////// SPECIAL PS //////////
+
+# Sockets
+which netstat && sudo netstat -pantu
+sudo netstat -pantu
+
+which ss
+ss -pantu
+sudo ss -pantu
+
+
+netstat -rn
+find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -15 -type f -print | xargs ls -latr \
+
+------------------burn--------------------------------
+date; date -u; echo $$; w
+/bin/ls -latrR /tmp
+ps -HlAwwwef | less
+sudo netstat -lptn
+/bin/ls -latr /var/log
+
+# check logs
+sudo /bin/ls -lArtR /*var/*log* /etc/*syslog* /var/*acc*
+sudo netstat -pantu
+
+find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -<yourminutesontarget> -type f -print | xargs ls -latr
+sudo find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -400 -type f -print | xargs sudo ls -latr
+=======================================================================================
+                                    KEK
+=======================================================================================
+
+
+=======================================================================================
+                                    SSH & SCP Tricks
+=======================================================================================
+# Collection
+mkdir target4survey && cd target4survey
+
+ssh -S /tmp/t4 student7@127.0.0.1 -p 50400 "mount" > mount.out
+ssh -S /tmp/T4 student7@127.0.0.1 -p 50400 "uname -a" > uname.out
+ssh -S /tmp/T4 student7@127.0.0.1 -p 50400 "find /etc -maxdepth 1 -name \*release\* -type f -exec cat {} \;" > release.out
+ssh -S /tmp/T4 student7@127.0.0.1 -p 50400 "cat /proc/cpuinfo" > cpuinfo.out
+ssh -S /tmp/T4 student7@127.0.0.1 -p 50400 "cat /etc/crontab" > crontab.out
+ssh -S /tmp/T4 student7@127.0.0.1 -p 50400 "ls -la /etc/cron.*" > cronfiles.out
+ssh -S /tmp/T4 student7@127.0.0.1 -p 50400 < /root/arachnid/croncommand > cronUsers.out
+ssh -S /tmp/T4 student7@127.0.0.1 -p 50400 "sudo -S lsmod" > lsmod.out
+ssh -S /tmp/T4 student7@127.0.0.1 -p 50400 "sudo -S systemctl status" > systemctl.out
+or
+ssh -S /tmp/T4 student7@127.0.0.1 -p 50400 "sudo -S services --status-all" > services.out
+
+
+# downloading files 
+ssh -S /tmp/T4 student7@127.0.0.1 -p 50400 "sudo -S services --status-all" > services.out
+=======================================================================================
+                                    SSH & SCP Tricks
+=======================================================================================
+=======================================================================================
+                                    FINDING FIND FILES
+=======================================================================================
+# Find all instanecs of syslog and hashthem
+sudo find / -path /proc -prune -o -type f -name \*syslog\* -exec sudo ls -lart {} \;
+sudo find / -path /proc -prune -o -type f -name \*syslog\*.conf -exec sudo sha1sum {} \;
+sudo find /root/Sup3rS3cr3t/ -iname \*.stuff -type f -exec sudo sha1sum {} \;
+sudo find / -path /proc -prune -o -type f -name \*.bash_history\*.conf -exec sudo sha1sum {} \;
+sudo find / -path /proc -prune -o -type f -name ls -exec sudo ls -lart {} \;
+
+# Find a directory 
+sudo find / -path /proc -prune -o -type d -name \*.ssh\* -exec sudo ls -lartR {} \;
+
+# Find anything that has changed in the last 15 minutes
+find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -15 -type f -print | xargs ls -latr
+
+# Find handles to files
+find /proc -regex '\/proc\/[0-9]+\/fd\/.*' -type l -lname "*$1*" -printf "%p -> %l\n" 2> /dev/null
+ps -q <pid> -eF
+
+# Remove hard to delete files
+find -name \*ef -exec rm {} \;
+
+
+=======================================================================================
+                                    Adding Users
+=======================================================================================
+# Add user
+sudo useradd -g root -s /bin/bash -d /home/solo7 -m -p $(echo maytheforcebewithyou | openssl passwd -1 -stdin) solo7
+
+# Delete users
+sudo userdel -r solo7
+
+# Delete users with selinux installed
+sudo userdel -rZ solo7
+
+
+
+-------------------------------------[+] sysinfo[+]-------------------------------------
++[Logged on]
+>>  date; date -u
+>>  w
+>>  uname -a
+>> ls /etc/*release*
+>>  echo $$
+>>  ifconfig -a
+
++[Can you run this?]
+unset HISTFILE
+
++[Date time and basic OS info]
+date; date -u; w;id;uname -a; echo $$; ifconfig -a
+
+date 
+date -u
+w
+id
+uname -a
+echo $$
+ifconfig -a
+
++[Ports of operation]
+test -e /proc/sys/net/ipv4/ip_local_port_range && cat /proc/sys/net/ipv4/ip_local_port_range 
+
++[OS versioning]
+ls -lARt /etc/*release*
+for i in `ls /etc/*release*`; do test -f $i && cat $i; done
+
++[Watch for file changes]
+watch -n 60 find . -mmin -60 -type f -exec ls -l {} + 
+
++[List users]
+cut -d: -f1 /etc/passwd | sort -u 
+
++[CPU info]
+strings cpuinfo
+
+--------------------------------------[+] health[+]--------------------------------------
++[Hard drive space]
+df -H
++[Ram usage]
+vmstat -s
+mpstat -P ALL
+iostat
+
+--------------------------------------[+] cron[+]--------------------------------------
++[Var spool]
+>> ls -lart /var/spool/cron/*
+>>  tail -n 1000 /var/spool/cron/*
+
++[Find all instances of cron]
+ls -lArtR /etc/*cron* /etc/*/*cron* /var/spool/
+for user in $(cut -f1 -d: /etc/passwd);do crontab -u $user -l; done
+
+--------------------------------------[+] logs[+]--------------------------------------
++[Mando Logs]
+>>  ls -lartR /var/*acc*
+>>  ls -lartR /var/*log*
+>>  ls -lartR /etc/*sysl*
+
++[selinux installed or active?]
+>>  getenforce || selinux || sestatus
+
++[History]
+>>  cat /root/.bash_history | less
+>>  cat ~/.bash_history | less
+
++[Find all instances of logs]
+ls -lArtR /var/log /etc/*syslog*
+
++[Find config]
+find /etc -name \*syslog.conf\*
+
+-[Other configs]
+systemctl list-unit-files --state=enabled
+
++[wathc for logs]
+watch -n 60 find . -mmin -60 -type -f exec ls -l {} + 
+
++[See logs]
+less
+last
+
++[lastlog]
+/var/lastlog:
+    can only be seen with lastlog command
+
++[log configs]
+/etc/syslog ??
+
++[Binary logs]
+    /var/log/utmp   | complete picture of logs
+    /var/log/wtmp   | historical data of utmp
+    /var/log/btmp   | records only failed logins
+    /var/log/lastlog
+
+    last -f /var/log/btmp
+
+    root     ssh:notty    192.168.250.28   Tue May  7 11:49    gone - no logout 
+    root     ssh:notty    192.168.250.28   Mon May  6 16:04 - 11:49  (19:44) 
+
+    utmpdump /var/log/btmp | grep -v "notty" > tmp.txt
+    utmpdump -r < tmp.txt > /var/log/btmp
+    rm -rf tmp.txt  
+
++[Fedora binary logs]
+    ausearch -m LOGIN --start today -i
+-----------------------------------[+]binary[+]--------------------------------------
++[Proc List]
+>>  ps -elf
+
++[Netstat]
+>>  netstat -pantu
+
++[selinux installed or active?]
+>>  getenforce / selinux / sestatus
+
++[Proc list]
+ps -Awwwo uid,user,pid,ppid,rss,vsz,%cpu,command |less 
+  // hiearchy
+ps -HlAwwf 
+ps -HlAwwwef 
+ps axjf
+ // find process pids by name
+Ps –C chrome –o pid= 
+
++[selinux installed or active?]
+getenforce / selinux / sestatus
+
++[Sockets]
+netstat -pantu 
+ss -pantu
+ip address
+ip neigh
+
++[Getting pids if they're not available]
+getting_pid
+for i in $(netstat -nta | awk 'NR>=3{print $4}' | sed -e
+'s/.*://'); do echo "--------------" && echo $i && lsof -n -iTCP:$i
+| grep 'LISTEN\|ESTABLISHED'; done
+
+
++[promisc detection]
+for i in `ls /sys/class/net/*/flags`;do echo $i && cat $i && ifconfig -a $(echo $i | awk -F/ '{print $(NF-1)}');done
+#0x1103
+#0x1003
+0x1303  # 0001 001[1] 0000 0011   # device is in promiscuous mode.
+0x1003  # 0001 000[0] 0000 0011  # device is not in promiscuous mode.
+
++[Services]
+systemctl list-unit-files --state=enabled
+lsmod 
+
+-----------------------------------[+]directory [+]--------------------------------------
++[Their ls]
+>>  ls -lartR . .. / /root /tmp /home
+
++[Check all changes]
+>>  find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -15 -type f -print | xargs ls -latr
+
++[Look for weird shit]
+ls -lart . .. / /root /tmp
+ls -lArtR /root /tmp /home
+
+-----------------------------------[+] burn [+]-----------------------------------------
++[Burning off]
+>>  ls -latr /tmp
+>>  ps -elf
+>>  netstat -lptn
+>>  ls -latr /var/log
+>>  find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -<yourminutesontarget> -type f -print | xargs ls -latr
+-----------------------------------[+] misc [+]-----------------------------------------
++[Burn offs]
+find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -15 -type f -print |  xargs ls -latr
+
+find / \( -path /proc -prune -o -path /sys -prune \) -o -mmin -<yourminutesontarget> -type f -print |  xargs ls -latr
+
++[Binary directory]
+/proc
+    cmd
+    cwd
+    environ
+    fd
+    exe strings=disk; cat=mem
+
++[Userful commands]
+file:
+    list file type before interacting with cat/strings
+
+sysctl:
+    sysctl fs.file-nr
+    fs.file-nr = 928	0	181520
+    928     The number of allocated file handles.
+    0       The number of unused-but-allocated file handles.
+    181520  The system-wide maximum number of file handles.
+
+ldd: 
+    <file> #list dll  
+
+readelf -h:
+    file = static? readelf shows massive change in entry could
+    assume packing invovled due to stub code pushing entry. 
+
+nm -al:
+    pull debugging strings left by shitty writer ie (ghostrat) 
+
+stat:
+    list all 3 timestamps and inode 
+
+lsof:
+    lsof -Pnp
+    lsof -n -iTCP:$port | grep -i 'ESTABLISHED\|LISTEN'
+
+promisc:
+    cat /sys/class/net/<int>/flags
+    0x1103 == promisc
+    0x1003 == none
+
+fuser -av:
+    list handle of this file that leads to binary writing to it.
+    ie fuser -av /var/log/syslog == syslogd 
+
+create time:
+    debugfs -R `stat <file>` /dev/<fs> 
+    #only works on ext4 
+
+look for handles:
+    find /proc -regex '\/proc\/[0-9]+\/fd\/.*' -type l -lname "*$1*" -printf "%p -> %l\n" 2> /dev/null
+
+    replace $1 with the file name you're looking for
+    ssh -M -S /tmp/T1 root@10.50.##.## -L 8896:10.169.##.##:22
+
+Download and Uploads
+    ssh -S /tmp/T1 root@host "cat file.txt" > copyOfFile.txt
+    ssh -S /tmp/T1 root@host "cat file.txt" | less
+    ssh -S /tmp/T1 root@host "cat > file.txt" < copyOfFile.txt
+    scp -o ControlPath=/tmp/T1 <file> root@host:<file>
+
+iptables
+    iptables -t nat -L -n -v --line-numbers
+    iptables -t  nat -D PREROUTING 2
+iptables -A OUTPUT -p tcp --dport 780 -j REJECT
+iptables -A INPUT -p tcp --dport 780 -j REJECT
+touch -m updates modified
+touch -t updates access and modified
+touch updates everything
+touch -a updates access only
+
+=======================================================================================
+                                    Logging set up
+=======================================================================================
+/var/account/acct       -- Process level accounting
+/var/log/lastlog        -- Logs users most recent login
+/var/log/btmp           -- Records bad attempts
+
+=======================================================================================
+                                    SCP SSH
+=======================================================================================
++[Create a Master socket]
+    ssh -M -S /tmp/test root@hostname
+
++[SCP through control socket]
+    scp -P port -o "ControlPath=/tmp/test" root@hostname:/path/file1 root@hostname:/path/file2 root@hostname:/path/file3 root@hostname:/path/file4 .
+
++[scp through different ports]
+    ssh -M -S /tmp/test2 root@10.50.28.134 -L 2000:10.50.28.134:22
+    scp -P 2000 -o "ControlPath=/tmp/test2" root@127.0.0.1:/root/arachnid/DryRuns/galindez_210519_DryRun2/*.txt .
+
+
+
+
