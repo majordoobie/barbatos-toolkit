@@ -31,7 +31,20 @@ exc = ''.join(traceback.format_exception(type(error), error, error.__traceback__
 
 ## Structure
 ### Systems
-> Notes pertaining to a particular system that can come in handy for CTFs
-
+> Notes pertaining to a particular system that can come in handy for CTF's
+```
+OS 
+|
+--> scripts
+--> notes
+```
 ### Class
-> Any vendor classes like 
+> Any vendor classes like NET+, SEC+ etc. 
+
+### Cybernetic
+> Everything else from how-to's to note to self
+#### environment
+> Notes pertaining to setting up an environment or service
+
+#### stack
+> Notes pertaining to some tool or "how-to"
