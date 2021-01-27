@@ -8,6 +8,11 @@
 
 ![](Pasted%20image%2020210127162358.png)
 
+### Images vs Containers
+Images are the OS's that someone has built. There is a few root ones that all others are essentially based on. A large majority of images are based on Debian, Pine or some other operating system. Then developers take those base images and tweak them for what they need. 
+
+Let's take the [Postgres](https://github.com/docker-library/postgres/blob/ba302205a1300a5ad262ee770f7ac8a1038e8fde/13/Dockerfile)
+
 ## Running Docker
 - There are 3 common ways to run docker.
 	- Docker through CLI
@@ -15,16 +20,18 @@
 	- Docker through docker-compose
 
 ### Docker through CLI
-You can easily start up a docker container and run a single script all through a single command like the following
+You can easily start up a docker container and run a single script all through a single command like the following.
 ```bash
 docker run -it --rm --name my-running-script -p 80:80 -v "$PWD":/usr/src/app -w /usr/src/app node:8 node your-daemon-or-script.js
 ```
 The line above will pull a node image if it's not already available and start a container with that image and run `your-daemon-or-script.js`. When it is done it will die, but if it's a daemon you'll need to kill it with `docker stop my-running-script`
 
-There are even more switches that you can add to fine tune the container. This can lead to a gurthy command line. To avoid this you use Docker files
+There are even more switches that you can add to fine tune the container. This can lead to a gurthy command line. To avoid this you use Docker files to try to consolidate 
 
 ### Docker through Dockerfile
-Dockerfile is a textfile containing all the configurations needed to run a container. Unlike using the CLI, you can also add more configurations to it like using the `RUN` which runs OS level commands such as downloading additional packages for the OS.
+A Dockerfile deines how an image is built, not how it is used. So you won't be able to port over all the CLI commands here.
+
+Dockerfile is a textfile containing all the configurations needed to build an image. Unlike using the CLI, you can also add more configurations to it like using the `RUN` which runs OS level commands such as downloading additional packages for the OS.
 
 The following is a Dockerfile the replaces the command in Docker through CLI
 ```Dockerfile
