@@ -5,6 +5,11 @@ Collection of notes and scripts from the internet rabbit holes.
 ## Quick Ref
 
 ### Quick python instance
+> Don't care about what is installed? 
+```bash
+docker run -it -d --rm --name temp-container --mount type=bind,source="$(pwd)",target=/code -w /code --entrypoint /bin/bash python
+```
+> Want to set up some aliases and install packages? Use the Dockerfile example instead
 ```Dockerfile
 FROM python:3 # Installs the latest should be debian image at this time also don't include this comment
 WORKDIR /code

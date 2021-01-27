@@ -11,5 +11,5 @@ Commands needed:
 | -w              | Set a working directory                                                                                     |
 
 ```bash
-docker run -it -d --rm --name temp-container --mount type=bind,source="$(pwd)",target=/code -w /code --entrypoint "tail -f /dev/null" python
+docker run -it -d --rm --name temp-container --mount type=bind,source="$(pwd)",target=/code -w /code --entrypoint /bin/bash python
 ```
