@@ -195,7 +195,7 @@ N			: Previous find
 
 ---
 ## Metadata
-- `tags`: #cybernetic
+- `tags`: #stack #vim 
 - `Title`: VIM-Notes
 - `Created`: [[2021-01-22]] 11:46
 
