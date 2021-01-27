@@ -1,3 +1,4 @@
+# docker-notes
 Commands needed:
 | switch          | Description                                                                                                 |
 | --------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -28,3 +29,26 @@ ENTRYPOINT ["tail", "-f", "/dev/null"]
 
 
 
+
+
+
+
+
+
+
+
+
+
+---
+## Metadata
+- `tags`: #stack #docker
+- `Title`: docker-notes
+- `Created`: [[20210127]] 15:21
+
+==References==
+- [Docker Tutorial](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=2711s)
+- [Docker Tutorial](https://www.youtube.com/watch?v=fqMOX6JJhGo&t=1203s) - [PostGres Image](https://hub.docker.com/_/postgres)  
+
+[PG & Docker Tutorial](https://www.youtube.com/watch?v=aHbE3pTyG-Q)  
+[Docker install on WSL](https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4)  
+[Docker Install on WSL](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly)
