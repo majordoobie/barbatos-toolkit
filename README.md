@@ -26,6 +26,7 @@ docker run -it --rm -d --name python_container --mount type=bind,source="$(pwd)"
 docker exec -it python_container /bin/bash
 ```
 > The `--rm` will make sure the clean up the container when you stop it so it will leave your disk dirty. But the tag will still exits you can see it with `docker images`. So to spin it back up you just need the run line again
+> `-t` isn't really needed, but it'll be easier to see which is the image you downloaded from `docker images` with a unique tag that you give it so that you know where it came from
 
 ### Convert exception to string
 ```python
