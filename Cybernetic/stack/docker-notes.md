@@ -17,14 +17,22 @@
 ### Docker through CLI
 You can easily start up a docker container and run a single script all through a single command like the following
 ```bash
-docker run -it --rm --name my-running-script -v "$PWD":/usr/src/app -w /usr/src/app node:8 node your-daemon-or-script.js
+docker run -it --rm --name my-running-script -p 80:80 -v "$PWD":/usr/src/app -w /usr/src/app node:8 node your-daemon-or-script.js
 ```
 The line above will pull a node image if it's not already available and start a container with that image and run `your-daemon-or-script.js`. When it is done it will die, but if it's a daemon you'll need to kill it with `docker stop my-running-script`
 
 There are even more switches that you can add to fine tune the container. This can lead to a gurthy command line. To avoid this you use Docker files
 
 ### Docker through Dockerfile
-Dockerfile is a 
+Dockerfile is a textfile containing all the configurations needed to run a container. Unlike using the CLI, you can also add more configurations to it like using the `RUN` which runs OS level commands such as downloading additional packages for the OS.
+
+The following is a Dockerfile the replaces the command in Docker through CLI
+```Dockerfile
+FROM node:8
+WORKDIR /usr/src/app
+EXPOSE 80/tcp
+
+```
 
 
 Commands needed:
