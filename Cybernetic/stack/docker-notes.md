@@ -1,5 +1,30 @@
 # docker-notes
 ## About Docker
+- Containers are completely isolated environments that share the same OS kernel
+- This means that hardware access has to go through the OS to communicate with the HAL API
+- Docker is a LXC type of container 
+- When you spin up a container on Windows it use to run on a Virtual Box shim. Now a days it runs on Hyper-V
+- Docker is designed to run a specific task like a Meeseeks
+
+![](Pasted%20image%2020210127162358.png)
+
+## Running Docker
+- There are 3 common ways to run docker.
+	- Docker through CLI
+	- Docker through Dockerfile
+	- Docker through docker-compose
+
+### Docker through CLI
+You can easily start up a docker container and run a single script all through a single command like the following
+```bash
+docker run -it --rm --name my-running-script -v "$PWD":/usr/src/app -w /usr/src/app node:8 node your-daemon-or-script.js
+```
+The line above will pull a node image if it's not already available and start a container with that image and run `your-daemon-or-script.js`. When it is done it will die, but if it's a daemon you'll need to kill it with `docker stop my-running-script`
+
+There are even more switches that you can add to fine tune the container. This can lead to a gurthy command line. To avoid this you use Docker files
+
+### Docker through Dockerfile
+Dockerfile is a 
 
 
 Commands needed:
