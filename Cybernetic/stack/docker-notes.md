@@ -41,7 +41,7 @@ EXPOSE 80/tcp
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)"
 CMD ["node", "your-daemon-or-script.js"]
 ```
-
+With that file created, we can now build the image from that Dockerfile.
 
 
 Commands needed:
