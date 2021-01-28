@@ -39,12 +39,48 @@ FROM node:8
 WORKDIR /usr/src/app
 EXPOSE 80/tcp
 RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.1/zsh-in-docker.sh)"
+
+# Run your script
 CMD ["node", "your-daemon-or-script.js"]
+
+# Or suspend the container 
+ENTRYPOINT ["tail", "-f", "/dev/null"]
 ```
 With that file created, we can now build the image from that Dockerfile.
+```bash
+# Build using the docker file. The -t gives a tag name to the build
+docker build -f /path/to/Dockerfile -t my-build-app .
+
+# Containerize the image built; ommit the -d to attach a terminal
+docker run -it -d --rm --name my-running-app --mount type=bind,source="$(pwd)",target=/usr/src/app my-build-app
+
+# Connect to the container that is running
+docker exec -it my-running-app /bin/bash
+```
 
 ### Docker through docker-compose
-As we mentioned earlier, Dockerfile only describes how an image should be build
+As we mentioned earlier, Dockerfile only describes how an image should be built, not how it should be used. With a docker-compose file we can describe how it should be used! On top of that, you can specify how to set up multiple containers at a time.
+
+Here is an example how how I set up PantherLily
+```yml
+FROM python:3.7-buster
+WORKDIR /opt/project
+
+RUN echo 'alias ll="ls -lart --color=auto"' >> ~/.bashrc
+COPY requirements.txt requirements.txt
+
+RUN python -m pip install ipython
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD ["python", "main.py", "--live" ]
+```
+```yml
+
+```
+
 
 
 Commands needed:
