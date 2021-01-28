@@ -6,7 +6,7 @@
 - When you spin up a container on Windows it use to run on a Virtual Box shim. Now a days it runs on Hyper-V
 - Docker is designed to run a specific task like a Meeseeks
 
-![](Pasted%20image%2020210127162358.png)
+![](attachments/Pasted%20image%2020210127162358.png)
 
 ### Images vs Containers
 Images are the OS's that someone has built. There is a few root ones that all others are essentially based on. A large majority of images are based on Debian, Pine or some other stripped down operating system. Then developers take those base images and tweak them for what they need. 
