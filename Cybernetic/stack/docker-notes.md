@@ -62,7 +62,8 @@ docker exec -it my-running-app /bin/bash
 As we mentioned earlier, Dockerfile only describes how an image should be built, not how it should be used. With a docker-compose file we can describe how it should be used! On top of that, you can specify how to set up multiple containers at a time.
 
 Here is an example how how I set up PantherLily
-```yml
+> panther_bot_dockerfile
+```Dockerfile
 FROM python:3.7-buster
 WORKDIR /opt/project
 
@@ -77,12 +78,87 @@ COPY . .
 
 CMD ["python", "main.py", "--live" ]
 ```
+> panther_daemon_dockerfile
+```Dockerfile
+FROM python:3.9-buster
+WORKDIR /opt/project
+
+RUN echo 'alias ll="ls -lart --color=auto"' >> ~/.bashrc
+COPY requirements.txt requirements.txt
+
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+WORKDIR database
+CMD ["python", "update_daemon.py"]
+```
+> docker-compose.yml
 ```yml
+version: '3.7'
+services:
+  panther_bot:
+    build:
+      context: .
+      dockerfile: panther_bot_dockerfile
+    image: pantherlily:v3.0
+    container_name: panther_bot3
+    volumes:
+      - .:/opt/project
+    dns:
+      - 1.1.1.1
+      - 1.0.0.1
+    networks:
+      - panther_network
+
+  panther_db:
+    image: postgres
+    container_name: panther_db
+    env_file:
+      - packages/private/database.env
+    volumes:
+      - panther_volume:/var/lib/postgresql/data/  # Path is where the container stores sql data
+    ports:
+      - 5432:5432
+    networks:
+      - panther_network
+
+  panther_daemon:
+    build:
+      context: .
+      dockerfile: panther_daemon_dockerfile
+    image: panther_daemon:v1.0
+    container_name: panther_daemon
+    volumes:
+      - .:/opt/project
+    networks:
+      - panther_network
+
+volumes:
+  panther_volume:
+    external: true
+    name: panther_volume
+
+networks:
+  panther_network:
+    external: true
+    name: panther_network
+
+```
+
+With the `docker-compose.yml` you can set up the instructions for all three containers at the same time. To build and start them you use the `docker-compose` command
+```bash
+# Build using the docker-compose.yml file
+docker-commpose build
+
+# Start all the containers
+docker-compose up -d
 
 ```
 
 
-
+## Shortcuts
+### Spinning up a quick python container
 Commands needed:
 | switch          | Description                                                                                                 |
 | --------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -99,9 +175,11 @@ Commands needed:
 ```bash
 docker run -it -d --rm --name temp-container --mount type=bind,source="$(pwd)",target=/code -w /code --entrypoint /bin/bash python
 ```
-#### Dockerfile style
+
+### Spinning up a python container with some tweaks
+The `ENTRYPOINT` is going to suspend the container so that we can use it as a "VM"
 ```Dockerfile
-FROM python:3 # Installs the latest should be debian image at this time also don't include this comment
+FROM python:3
 WORKDIR /code
 RUN echo 'alias ll="ls -lart --color=auto"' >> ~/.bashrc
 
@@ -111,6 +189,16 @@ RUN pip install --upgrade pip
 ENTRYPOINT ["tail", "-f", "/dev/null"]
 ```
 
+```bash
+# Build the container from the image specified in the Dockerfile
+docker build -f /path/to/dockerfile -t python-tag . 
+
+# Start the container
+docker run -it --rm -d --name python_container --mount type=bind,source="$(pwd)",target=/code python-tag
+
+# Connect to the container that is running
+docker exec -it python_container /bin/bash
+```
 
 
 
