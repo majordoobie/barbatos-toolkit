@@ -9,6 +9,8 @@
 - [Shortcuts](#7)
 	- [Spinning up a quick python container](#8)
 	- [Spinning up a quick python container with dockerfile](#9)
+- [References](#0)
+---
 	
 ## About Docker <a name="1"></a>
 - Containers are completely isolated environments that share the same OS kernel
@@ -214,7 +216,7 @@ docker exec -it python_container /bin/bash
 
 
 ---
-## Metadata
+## Metadata <a name="0"></a>
 - `tags`: #stack #docker
 - `Title`: docker-notes
 - `Created`: [[20210127]] 15:21
