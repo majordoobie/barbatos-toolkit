@@ -1,5 +1,16 @@
 # docker-notes
-## About Docker
+## TOC
+- [About Docker](#1)
+	- [Images vs Containers](#2)
+- [Running Docker](#3)
+	- [Docker through CLI](#4)
+	- [Docker through Dockerfile](#5)
+	- [Docker through docker-compose](#6)
+- [Shortcuts](#6)
+	- [Spinning up a quick python container](#7)
+	- [Spinning up a quick python container with dockerfile](#8)
+	
+## About Docker <a name="1"></a>
 - Containers are completely isolated environments that share the same OS kernel
 - This means that hardware access has to go through the OS to communicate with the HAL API
 - Docker is a LXC type of container 
@@ -8,12 +19,12 @@
 
 ![](attachments/Pasted%20image%2020210127162358.png)
 
-### Images vs Containers
+### Images vs Containers <a name="2"></a>
 Images are the OS's that someone has built. There is a few root ones that all others are essentially based on. A large majority of images are based on Debian, Pine or some other stripped down operating system. Then developers take those base images and tweak them for what they need. 
 
 Let's take the [Postgres](https://github.com/docker-library/postgres/blob/ba302205a1300a5ad262ee770f7ac8a1038e8fde/13/Dockerfile) image as an example. Postgres is a well know database. Their image isn't just a Postgres binary, it's a `debian:buster-slim` operating system with the necessary Debian packages needed to run Postgres without any installation from the user. 
 
-## Running Docker
+## Running Docker <a name="3"></a>
 - There are 3 common ways to run docker.
 	- Docker through CLI
 	- Docker through Dockerfile
