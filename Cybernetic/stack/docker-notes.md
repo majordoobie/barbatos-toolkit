@@ -26,7 +26,7 @@ docker run -it --rm --name my-running-script -p 80:80 -v "$PWD":/usr/src/app -w 
 ```
 The line above will pull a node image if it's not already available and start a container with that image and run `your-daemon-or-script.js`. When it is done it will die, but if it's a daemon you'll need to kill it with `docker stop my-running-script`
 
-There are even more switches that you can add to fine tune the container. This can lead to a gurthy command line. To avoid this you use Docker files to try to consolidate 
+There are even more switches that you can add to fine tune the container. This can lead to a gurthy command line. To avoid this you use Docker files to try to consolidate.
 
 ### Docker through Dockerfile
 A Dockerfile defines how an image is built, not how it is used. So you won't be able to port over all the CLI commands here.
@@ -42,6 +42,9 @@ RUN sh -c "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/
 CMD ["node", "your-daemon-or-script.js"]
 ```
 With that file created, we can now build the image from that Dockerfile.
+
+### Docker through docker-compose
+As we mentioned earlier, Dockerfile only describes how an image should be build
 
 
 Commands needed:
