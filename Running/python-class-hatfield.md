@@ -19,8 +19,26 @@ class Person:
 		return f'{self.first_name} {self.last_name}'
 ```
 
-- With the `@property` we are able to return dynamic information without having to change the attribut
+- With the `@property` we are able to return dynamic information without having to change the attributes directly. 
+- You want to use private variables in classes with a `@property`
+- You can also write functions like a setter in `@property` like `@property.setter` to set anything like `person.full_name = "Joe Smith"`
+- You want to use `@property` whenever you are just returning a static values or any `attributes` you do not want to call a full`method` just to return some values 
 
+- `@classmethod` with class methods you can create another object of itself using the same class it is called from like 
+```python
+	@classmethod
+	def from_path(file_name):
+		with open(file_name) as infile:
+			return cls(**json.load(infile))
+			
+with Person.from_path('test') as you:
+	print(you)
+```
+
+
+
+### Web Stuff
+ - `csrf` token is generated when you first get to a site and it tells the form that is submitted that it really came from a specific user. So you need to submit the token if you want to communicate with the web server such as a login. 
 
 
 
