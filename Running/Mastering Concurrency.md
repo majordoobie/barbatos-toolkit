@@ -9,6 +9,7 @@
 Threading module took over threads and provides higher functionality without as much difficulty 
 - ==theading.activeCount()== returns the number of active thread objects in the program
 - ==theading.currentThread()== number of thread objects in the current thread control
+- ==threading.enumerate()== returns a list of the current active thread objects in the program
 - 
 
 
