@@ -13,7 +13,7 @@ int a;
 
 - Pointers are variables that store the address of another variable
 ![](attachments/Pasted%20image%2020210227174743.png)
-
+![](attachments/Pasted%20image%2020210227181349.png)
 
 
 
