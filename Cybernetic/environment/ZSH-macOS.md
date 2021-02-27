@@ -1,8 +1,9 @@
 
-# ZSH-macOS
+# MacOS-Setup
+## ZSH On MacOS
 - The [Kevin-Smets Repo](https://gist.github.com/kevin-smets/8568070) repo has all you need to install oh-my-zsh which is the package manager for zsh that we are using.
 
-## Plugin format
+### Plugin format
 The format for adding plugins is to not have any commas in the array
 ```bash
 plugins=(
@@ -13,20 +14,20 @@ plugins=(
 )
 ```
 
-## Fixing paths
+### Fixing paths
 ```
 vim ~/.p10k.zsh
 typeset -g POWERLEVEL9K_DIR_MAX_LENGTH=0
 source ~/.p10k.zsh
 ```
 
-## Plugins
+### Plugins
 - [auto suggestion](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)
 - [syntax highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
 - osx (Already available)
 - docker (already available)
 
-## Installing fonts on windows
+### Installing fonts on windows
 ```
 # Install fonts
 ## For windows
@@ -39,14 +40,19 @@ https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/Go-Mono/Regula
 }
 ```
 
-## Install fonts on nix
+### Install fonts on nix
 ```
 mkdir -p ~/.local/share/fonts
 cd ~/.local/share/fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://github.com/ryanoasis/nerd-fonts/raw/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20Nerd%20Font%20Complete.otf
 ```
 
 
+## Safari Configuration
+- By default, tabs like to go to sleep when you leave them alone. To disable this feature you have to enable the `debug` menu and disable ` Disable Hidden Page Timer Throttling`
 
+```bash
+defaults write com.apple.Safari IncludeInternalDebugMenu YES
+```
 
 ---
 ## Metadata
