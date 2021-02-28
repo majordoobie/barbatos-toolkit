@@ -1,4 +1,4 @@
-# working_with_pointers
+# Learning C++
 ## Working with pointer playlist
 ### Introduction to pointers
 - Each byte of RAM memory has an address starting from 0
@@ -66,7 +66,13 @@ int main()
 - Each scope of your program is saved in a record called the stack frame. All variables for that scope are saved in that frame
 ![](attachments/Pasted%20image%2020210227213201.png)
 
-## C++ classes and objects
+
+## Caleb's playlist
+### Structs vs Classes
+- structs and classes are similar types in C++
+- A big difference is that in C++ structs are used for data only or PODS ==Plain Old Data Structure==
+- Your normally want to avoid putting methods in structs with C++
+- 
 
 ---
 ## Metadata
@@ -77,3 +83,4 @@ int main()
 ==References==
 - [Pointer Series](https://www.youtube.com/playlist?list=PL2_aWCzGMAwLZp6LMUKI3cc7pgGsasm2_)
 - [Classes in C++](https://www.youtube.com/watch?v=ABRP_5RYhqU)
+- [Structs vs Class](https://www.youtube.com/watch?v=vJ9ezXY7efw&list=PL_c9BZzLwBRJVJsIfe97ey45V4LP_HXiG&index=84)
