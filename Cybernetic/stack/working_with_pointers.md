@@ -81,6 +81,41 @@ User user;    // yup that's it
 User user(int arg1, string var2); // or with params
 ```
 
+- If you do not provide a default constructor, there will be one present anyways. It just takes no variables.
+- You can overload the constructor with different signatures
+- If you do not want a default constructor, then you would only add the custom constructor and omit adding the default constructor 
+- Since a default constructor exits, you do not have to write a constructor at all and it will still work
+```c++
+class A
+{
+	// notice that no constructor is written but still called
+	public:
+		void print() {}
+}
+
+int main()
+{
+	A a;
+	a.print();
+	return 0
+}
+```
+
+- To be able to enable overloading of constructors, a empty constructor must be present otherwise it will throw an error
+```c++
+class A
+{
+	public:
+		A() {}
+		A(int id) 
+		{
+			this->id=id;	
+		}
+}
+```
+
+
+
 ---
 ## Metadata
 - `tags`: 
