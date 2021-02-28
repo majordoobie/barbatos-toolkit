@@ -64,6 +64,9 @@ int main()
 ### pointers as function arguments
 - When you run your program the application in memory creates four parts, the code portion, the static/global portion, the stack portion and the heap portion
 - Each scope of your program is saved in a record called the stack frame. All variables for that scope are saved in that frame
+![](attachments/Pasted%20image%2020210227213201.png)
+
+## C++ classes and objects
 
 ---
 ## Metadata
@@ -73,3 +76,4 @@ int main()
 
 ==References==
 - [Pointer Series](https://www.youtube.com/playlist?list=PL2_aWCzGMAwLZp6LMUKI3cc7pgGsasm2_)
+- [Classes in C++](https://www.youtube.com/watch?v=ABRP_5RYhqU)
