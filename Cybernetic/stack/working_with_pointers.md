@@ -61,6 +61,9 @@ int main()
 }
 ```
 
+### pointers as function arguments
+- When you run your program the application in memory creates four parts, the code portion, the static/global portion, the stack portion and the heap portion
+- Each scope of your program is saved in a record called the stack frame. All variables for that scope are saved in that frame
 
 ---
 ## Metadata
