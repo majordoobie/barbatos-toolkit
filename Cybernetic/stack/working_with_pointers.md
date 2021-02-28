@@ -15,6 +15,19 @@ int a;
 ![](attachments/Pasted%20image%2020210227174743.png)
 ![](attachments/Pasted%20image%2020210227181349.png)
 
+### Working with pointers
+- If you were to increment a pointer, say by 1, it would increment one `value` based on the data type. For integers, this is four bytes. So incrementing by 1 increments by 4 bytes.
+```c++
+int main()
+{
+	int a = 10;
+	int *p = &a;
+	
+	printf(p)      // 2000
+	printf(p + 1)  // 2004
+	printf("Size of integer is %lu bytes\n", sizeof(int));
+}
+```
 
 
 ---
