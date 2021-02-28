@@ -29,6 +29,11 @@ int main()
 }
 ```
 
+### Pointer types
+- Pointers are strong types just like a normal variable
+- int* is used for int and char* is used for char
+- 
+
 
 ---
 ## Metadata
