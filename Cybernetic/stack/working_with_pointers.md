@@ -50,6 +50,18 @@ char *p0 = (char*)p;  // p0 becomes 1
 
 ```
 
+- void pointers are generic pointers that don't align with a particular type
+- Void pointers can only store the address of something you cannot dereference it to get the value because the data type in the pointer is not known. 
+```c++
+int main()
+{
+	int a = 1025;
+	int *p = &a;
+	void *p0 = p;
+}
+```
+
+
 ---
 ## Metadata
 - `tags`: 
