@@ -32,8 +32,23 @@ int main()
 ### Pointer types
 - Pointers are strong types just like a normal variable
 - int* is used for int and char* is used for char
-- 
+- If you were to create a variable of type int then then cast the results to a char variable it would truncate the values
 
+```c
+int a = 1025;
+int *p = &a;
+char *p0 = (char*)p;  // p0 becomes 1
+```
+```
+// a is an int so it is saved in a 4 byte continues address
+
+00000000 00000000 00000100 00000001
+
+// When *p0 = (char*)p; only the first byte is saved to p0 since it's a char type which only has one byte
+
+00000001
+
+```
 
 ---
 ## Metadata
