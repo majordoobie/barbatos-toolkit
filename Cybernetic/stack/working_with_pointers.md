@@ -72,7 +72,14 @@ int main()
 - structs and classes are similar types in C++
 - A big difference is that in C++ structs are used for data only or PODS ==Plain Old Data Structure==
 - Your normally want to avoid putting methods in structs with C++
-- 
+
+### Classes and Objects
+- With C++ when you want to create a new object you don't use the `new` keyword or call the class and assign it to a variable like you do with python instead you do this fucked up way:
+```C++
+User user;    // yup that's it
+
+User user(int arg1, string var2); // or with params
+```
 
 ---
 ## Metadata
