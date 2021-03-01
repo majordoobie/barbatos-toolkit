@@ -116,6 +116,9 @@ class A
 
 ![](attachments/Pasted%20image%2020210228022424.png)
 
+### Classes across files with header files
+- 
+
 ---
 ## Metadata
 - `tags`: 
