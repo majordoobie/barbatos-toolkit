@@ -116,9 +116,18 @@ class A
 
 ![](attachments/Pasted%20image%2020210228022424.png)
 
-### Classes across files with header files
-- 
+```
+<program> → <exp> , <assigns> ;
+<exp> → ( <operand> <op> <operand> ) |  ( <operand> : <operand> '?' <operand> ) | ( <operand> '!' )
+<operand> → <literal> | <variable> | <exp> 
+<assigns> → <assigns> , <assign> | <assign>
+<assign> → <variable> = <literal>
 
+
+<op>		'+' | '-' | '*' | '/' | '>' | '<' | '=' | '&' | '|'
+<variable>	\[a-zA-Z\]\[a-zA-Z0-9\]\*
+<literal>	\[0-9\]+
+```
 ---
 ## Metadata
 - `tags`: 
