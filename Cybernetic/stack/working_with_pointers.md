@@ -161,6 +161,26 @@ int main()
 }
 ```
 
+- Reading from a file uses the `ifstream`
+```C++
+int main()
+{
+	std::ifstream file("file_name");
+	std::vector<std::string> names;
+	
+	std::string input;
+	while(file >> input)
+	{	
+		names.push_back(input);			
+	}	
+	
+	for(std::string name: names)
+	{
+		std::cout << name << std::endl;	
+	}
+}
+```
+
 
 ## Metadata
 - `tags`: 
