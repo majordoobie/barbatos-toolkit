@@ -129,6 +129,39 @@ class A
 <literal>	\[0-9\]+
 ```
 ---
+
+### Reading and Writing with C++
+- To write to files you need `<fstream>`
+- `std::ofstream` is the name of the class to create an instance of the file object
+- To actually get a file handle you pass in the file object
+```c++
+#include <iostream>
+#include <fstream>
+
+int main()
+{
+	std::ofstream file("file_name");
+	
+	if (!(file.is_open()))
+	{
+		std::cout << "FUCKKK" << endl;	
+	}	
+	
+	std::vector<std::string> names;
+	names.push_back("Jason");
+	names.push_back("Corey");
+	
+	for(std::string name : names )
+	{
+		file << name << std::endl;	
+	}
+	
+	file.close();
+	return 0;
+}
+```
+
+
 ## Metadata
 - `tags`: 
 - `Title`: working_with_pointers
