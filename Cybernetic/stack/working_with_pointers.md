@@ -197,6 +197,39 @@ int main()
 - Entrypoints by default is the main function but you can overwrite that
 - If using static on a function you atr saying that the function will only be available in this execution unit no other unit can access it 
 
+### Variables
+- The real difference between data tyes is how many bytes they are 
+- with four bytes of sign int you can store between -2b to 2b
+- to get your your bits worth you can request an unsign int
+- you need to append an f after a float to declare a float
+- you can use `sizeof(obj)` to get yhr size of whatever you are passing in
+
+### Header Files
+- cpp files are the compilation init 
+- header files are used for declarations and more
+- declarations just says that a function exists it is not a definition
+- without a header file you would need to declare the signature of every function you want access to in each execution unit
+- by using a headerfile that has your declarations and using the `#include "header.h"` you are just pasting the declarations in the header into each execution unit
+- `#progma once` is a header guard that prevents duplicating header files that can be caused by chaining includes in a complicated project 
+- the traditional header guard is to use the following 
+
+```c++
+#ifdef _SOME_VAR
+#define _SOME_VAR
+
+void signature();
+void signatures();
+
+#endif
+```
+- which means if the `_SOME_VAR` is not defined then allow the include. When the header is about to get included again it will see that `_SOME_VAR` is already defined and it will prevent the declarations from getting re-included
+
+- distinctions between includes
+```
+#include "my_header.h" 
+#include <c_standard_lib.h>
+#include <cpp_standard_lib>
+```
 
 
 ## Metadata
@@ -205,6 +238,9 @@ int main()
 - `Created`: [[20210227]] 16:53
 
 ==References==
+
+- [Cherno](https://youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb)
+
 - [Pointer Series](https://www.youtube.com/playlist?list=PL2_aWCzGMAwLZp6LMUKI3cc7pgGsasm2_)
 - [Classes in C++](https://www.youtube.com/watch?v=ABRP_5RYhqU)
 - [Structs vs Class](https://www.youtube.com/watch?v=vJ9ezXY7efw&list=PL_c9BZzLwBRJVJsIfe97ey45V4LP_HXiG&index=84)
