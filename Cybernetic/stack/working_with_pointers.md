@@ -181,6 +181,23 @@ int main()
 }
 ```
 
+## Cherno
+### Pre processor
+- the include statemen will literally paste data from where ever its coming from
+- the `#if` and `#endif` will only execute code between the two lines if the condition is true
+- if you output your code into assembly you can start to see when you are doing dumb shit 
+- When allowing the compiler to `optomie` it will literally try to improve your code to make the assembly perform its task with less instructions. it will even remove code if it deems it unnecessary
+- `constant folding` is resolving constants at compile time insteaf of runtime  
+
+### Linking
+- linker links all your files together to make one application and registers the entrypoint
+- Compiling will not link but if you build it will compile AND link
+- Error codes that start with `C` have to do with the compiler such as syntax and sementic errors
+- Error codes that start with `L` have to do eith the linker such as not having a define entrypoint
+- Entrypoints by default is the main function but you can overwrite that
+- If using static on a function you atr saying that the function will only be available in this execution unit no other unit can access it 
+
+
 
 ## Metadata
 - `tags`: 
