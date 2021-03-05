@@ -231,6 +231,65 @@ void signatures();
 #include <cpp_standard_lib>
 ```
 
+## Local Static in C++ 
+- When you have a function with a static variable it will be initialized when it is first called. After that, it will no longer be re-initialized even if the variable is local to that function
+- The benifit of this is that only the function has access to this local variable. Because access is still limited to the scope by the lifetime is the lifetime of the program. So it will act like a global as long as the program is access it via the function with the static variable
+
+## Enums
+- Defines a set of values with integers
+- It names values or states so that the code is more readible must behind it all it's just an intiger
+- By default enums will get assign an interger automatically starting from one
+- You can also manually assign them with a equal sign
+```c++
+enum Example
+{
+  A = 20, B = 1, C = 30
+};
+
+int main()
+{
+  if (20 == A)
+  {
+    // do something
+  }
+}
+```
+- Since enum are integers by default, it would be wise to use a `char` when possible to use one byte instead of four
+```C++
+enum Example : char
+{
+  A = 20,
+  B = 200,
+  C = 0
+}
+```
+- When you assign a variable to a enum, you can set the variables Type since it is just a integer. But if you want to constraint it to the choices you want to set the variable type to the Enum name
+```c++
+enum Speed : char
+{
+  Slow = 10,
+  Fast = 30
+};
+
+int main()
+{
+  int currentSpeed = Slow;   // Acceptable
+  Speed maxSpeed = Fast      // prefered
+}
+```
+
+## Constructor
+- If for some reason you don't want people to instanciate your class you can hide your constructor in the private section which will prevent instanciation 
+- Additionally you can set the construtor to `delete`
+```c++
+class Excample
+{
+public:
+  Example() = delete;
+};
+```
+- 
+
 
 ## Metadata
 - `tags`: 
