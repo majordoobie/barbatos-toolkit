@@ -288,8 +288,10 @@ public:
   Example() = delete;
 };
 ```
-- 
 
+## Destructors
+- Destructor always runs when a object is destroyed
+- This is the best place to close handles or release memory
 
 ## Metadata
 - `tags`: 
