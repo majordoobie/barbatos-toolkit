@@ -181,6 +181,115 @@ int main()
 }
 ```
 
+## Cherno
+### Pre processor
+- the include statemen will literally paste data from where ever its coming from
+- the `#if` and `#endif` will only execute code between the two lines if the condition is true
+- if you output your code into assembly you can start to see when you are doing dumb shit 
+- When allowing the compiler to `optomie` it will literally try to improve your code to make the assembly perform its task with less instructions. it will even remove code if it deems it unnecessary
+- `constant folding` is resolving constants at compile time insteaf of runtime  
+
+### Linking
+- linker links all your files together to make one application and registers the entrypoint
+- Compiling will not link but if you build it will compile AND link
+- Error codes that start with `C` have to do with the compiler such as syntax and sementic errors
+- Error codes that start with `L` have to do eith the linker such as not having a define entrypoint
+- Entrypoints by default is the main function but you can overwrite that
+- If using static on a function you atr saying that the function will only be available in this execution unit no other unit can access it 
+
+### Variables
+- The real difference between data tyes is how many bytes they are 
+- with four bytes of sign int you can store between -2b to 2b
+- to get your your bits worth you can request an unsign int
+- you need to append an f after a float to declare a float
+- you can use `sizeof(obj)` to get yhr size of whatever you are passing in
+
+### Header Files
+- cpp files are the compilation init 
+- header files are used for declarations and more
+- declarations just says that a function exists it is not a definition
+- without a header file you would need to declare the signature of every function you want access to in each execution unit
+- by using a headerfile that has your declarations and using the `#include "header.h"` you are just pasting the declarations in the header into each execution unit
+- `#progma once` is a header guard that prevents duplicating header files that can be caused by chaining includes in a complicated project 
+- the traditional header guard is to use the following 
+
+```c++
+#ifdef _SOME_VAR
+#define _SOME_VAR
+
+void signature();
+void signatures();
+
+#endif
+```
+- which means if the `_SOME_VAR` is not defined then allow the include. When the header is about to get included again it will see that `_SOME_VAR` is already defined and it will prevent the declarations from getting re-included
+
+- distinctions between includes
+```
+#include "my_header.h" 
+#include <c_standard_lib.h>
+#include <cpp_standard_lib>
+```
+
+## Local Static in C++ 
+- When you have a function with a static variable it will be initialized when it is first called. After that, it will no longer be re-initialized even if the variable is local to that function
+- The benifit of this is that only the function has access to this local variable. Because access is still limited to the scope by the lifetime is the lifetime of the program. So it will act like a global as long as the program is access it via the function with the static variable
+
+## Enums
+- Defines a set of values with integers
+- It names values or states so that the code is more readible must behind it all it's just an intiger
+- By default enums will get assign an interger automatically starting from one
+- You can also manually assign them with a equal sign
+```c++
+enum Example
+{
+  A = 20, B = 1, C = 30
+};
+
+int main()
+{
+  if (20 == A)
+  {
+    // do something
+  }
+}
+```
+- Since enum are integers by default, it would be wise to use a `char` when possible to use one byte instead of four
+```C++
+enum Example : char
+{
+  A = 20,
+  B = 200,
+  C = 0
+}
+```
+- When you assign a variable to a enum, you can set the variables Type since it is just a integer. But if you want to constraint it to the choices you want to set the variable type to the Enum name
+```c++
+enum Speed : char
+{
+  Slow = 10,
+  Fast = 30
+};
+
+int main()
+{
+  int currentSpeed = Slow;   // Acceptable
+  Speed maxSpeed = Fast      // prefered
+}
+```
+
+## Constructor
+- If for some reason you don't want people to instanciate your class you can hide your constructor in the private section which will prevent instanciation 
+- Additionally you can set the construtor to `delete`
+```c++
+class Excample
+{
+public:
+  Example() = delete;
+};
+```
+- 
+
 
 ## Metadata
 - `tags`: 
@@ -188,6 +297,9 @@ int main()
 - `Created`: [[20210227]] 16:53
 
 ==References==
+
+- [Cherno](https://youtube.com/playlist?list=PLlrATfBNZ98dudnM48yfGUldqGD0S4FFb)
+
 - [Pointer Series](https://www.youtube.com/playlist?list=PL2_aWCzGMAwLZp6LMUKI3cc7pgGsasm2_)
 - [Classes in C++](https://www.youtube.com/watch?v=ABRP_5RYhqU)
 - [Structs vs Class](https://www.youtube.com/watch?v=vJ9ezXY7efw&list=PL_c9BZzLwBRJVJsIfe97ey45V4LP_HXiG&index=84)
