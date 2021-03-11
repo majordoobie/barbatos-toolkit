@@ -293,6 +293,9 @@ public:
 - Destructor always runs when a object is destroyed
 - This is the best place to close handles or release memory
 
+## Inheritance
+- 
+
 ## Metadata
 - `tags`: 
 - `Title`: working_with_pointers
