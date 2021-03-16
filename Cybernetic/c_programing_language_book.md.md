@@ -32,3 +32,11 @@ char* reverse_string(char array[])
     return reverse
 }
 ```
+
+## Chapter 2 Types, Operators, Expressions
+- The first 31 characters of an intername are significant 
+- Ints can be modified with `short` or `long`; `short` is at least 16 bits and `long` is at least 32 bits
+- `unsigned` is always 0 or positive
+- `<limits.h>` and `<float.h>` provide limits for precesion used in `float` `doubld` `long double`
+- To use `#include <math.h>` you need to link the file with `-lm` so `gcc -Wall -std=c99 get_ranges.c -lm -o out/get_ranges.o`
+- 
