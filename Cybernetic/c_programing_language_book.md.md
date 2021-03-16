@@ -16,3 +16,19 @@ int main()
 - When reading `char` from `getchar()` function; most often you will use the `EOF` built in which is larger than a byte since it's a integer. So if you are looping through `getchar()` it is wise to use an integer to hold the value of `EOF` even though `getchar()` grabs one byte characters
 - The `EOF` is a ==symbolic constant== from the `<stdio.h>` library 
 - When writing a character in single quotes represents an integer value that is that is equal to the machines character set for that character
+- In the box I was asked to reverse a string this is what I cameup with
+```C
+char* reverse_string(char array[])
+{
+    int array_length = sizeof(array) / sizeof(char);
+    int new_array_index = 0;
+    char* reverse = (char*)malloc(array_length * sizeof(char));
+    
+    for (int old_array_index = array_lengt - 1; old_array_index >= 0; --old_array_index)
+    {
+    	reverse[new_array_index] = array[old_array_index];
+	++new_array_index;
+    }
+    return reverse
+}
+```
