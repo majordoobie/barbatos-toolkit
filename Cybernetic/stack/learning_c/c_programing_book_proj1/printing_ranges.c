@@ -7,7 +7,7 @@
 unsigned long get_max_decimal(int bits)
 {
     // Get the binary length
-    unsigned long binary = 1L << bits;
+    unsigned long binary = 1UL << bits;
     // Subtract one to be able to or them
     unsigned long or_value = binary - 1;
     // Or the values

@@ -44,3 +44,25 @@ char* reverse_string(char array[])
 unsigned long binary = 1 << bits;
 ```
 - The 1 is a int constant if you want a long you have to specify it with an L
+- The character constant `\0` is often used as a NULL but it's value is just 0
+- A string constant (double quotes) is an array of characters
+- 'A' does not equal "A"
+	- 'A' is an integer used to represent a character
+	- "A" is an array with one character 'A' and null at the end `\0`
+
+- Enums are supported in C
+```c
+enum months { JAN = 1, FEB, MAR, APR, MAY, JUN,  
+ 			  JUL, AUG, SEP, OCT, NOV, DEC };
+```
+
+- A warning can be produced by the compiler when automatic type casting is done like adding a long into a integer where information can be lost
+- If non character data is to be stored in a `char` make sure to specify `signed/unsigned` 
+![](attachments/Pasted%20image%2020210317153534.png)
+
+
+## Chapter 3 Control Flow
+- semicolons are used to terminate statements
+- curly braces are used to group statements or `block`
+
+## Chapter 4 Functions and Program Structure
