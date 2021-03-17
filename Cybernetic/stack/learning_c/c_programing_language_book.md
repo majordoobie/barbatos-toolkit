@@ -39,4 +39,8 @@ char* reverse_string(char array[])
 - `unsigned` is always 0 or positive
 - `<limits.h>` and `<float.h>` provide limits for precesion used in `float` `doubld` `long double`
 - To use `#include <math.h>` you need to link the file with `-lm` so `gcc -Wall -std=c99 get_ranges.c -lm -o out/get_ranges.o`
-- 
+- If you want to do a bit shift like this
+```c
+unsigned long binary = 1 << bits;
+```
+- The 1 is a int constant if you want a long you have to specify it with an L
