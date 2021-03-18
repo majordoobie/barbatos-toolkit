@@ -66,3 +66,126 @@ enum months { JAN = 1, FEB, MAR, APR, MAY, JUN,
 - curly braces are used to group statements or `block`
 
 ## Chapter 4 Functions and Program Structure
+- When compiling multiple files you can add all the source files in the same command:
+`cc main.c secondary.c third.c`
+- If there is an error with a file, like C when compiling, you do not need to compile the other objects. 
+`cc main.c secondary.o third.o`
+- It's often  better to use a single header file that has all the declarations for all the source codes that need it
+- `register` declaration tells the compiler to save the variable in a register if the variable will be used a lot. The compiler is able to ignore this though 
+- `external` and `static` variables are automatically initialized to 0
+- A character array is a special array that takes a unique syntax
+```c
+char pattern[] = "ould";
+// equals the following
+char pattern[] = { ′o′, ′u′, ′l′, ′d′, ′\0′ };
+```
+
+### Preprocessor
+- Preprocessor are things that occur before actual compilation
+- The most used features are `#define` and `#include`
+- The `#include` statement gets replaced with the contents of whatever file is being included like a "copy and paste"
+- Header guards is also supported in C using the `#if`
+```c
+#if !define(HDR)
+#define HDR
+// code
+#endif
+```
+- A cool way to use this as found in the book is:
+```c
+#if SYSTEM == SYSV
+
+    #define HDR "sysv.h"
+
+#elif SYSTEM == BSD
+
+    #define HDR "bsd.h"
+
+#elif SYSTEM == MSDOS
+
+    #define HDR "msdos.h"
+
+#else
+
+    #define HDR "default.h"
+
+#endif
+
+#include HDR
+```
+
+## Chapter 5: Pointers and Arrays
+- With C99 you an use `void* ptr` as a generic pointer
+- Pointers are often 2 or 4 bytes that hold the address of something
+- To get the address of an object you use the `&` operator. The operator only works against objects in memory
+- The `*` is a dereference operator; when used on a pointer it gets the object at the address
+
+```c
+int x = 1, y = 2, z[10];
+
+int *ip;         /* ip is a pointer to int */
+
+
+
+ip = &x;         /* ip now points to x */
+
+y = *ip;         /* y is now 1 */
+
+*ip = 0;         /* x is now 0 */
+
+ip = &z[0];      /* ip now points to z[0] */
+```
+- In c pointers and arrays are practically the same thing and work exactly the same way which means that subscribing also works with pointers
+- If an array were to be created and I set the pointer to the first element then I can subscribe the pointer to the next element in the array just like using the array
+
+```c
+int array[10]
+int *ptr = &array[0];
+
+// You can move up the array chain with
+*(ptr+1); // equivalent to array[1];
+
+```
+
+- When using the syntax `array[index]` C will actually convert that to say `*(array + index)`
+- When passing a array name to a function, what is passed is the location of the first element of the array
+- You can subscribe a char array by looking for `\0`! if passing it to a function since the function is only getting the first element
+```c
+int string_length(char *string)
+{
+	int length;
+	for (length=0; *string != '\0'; *s++)
+		{
+			length++;
+		}
+	return length;
+}
+```
+
+- String constants are written with double quotes and their length is +1 their contents because of the termination with `\0`
+```c
+char amessage[] = "now is the time";   /* an array */
+
+char *pmessage = "now is the time";    /* a pointer */
+```
+
+- To copy a string to another variable you have to manually iterate over the array. I want to point out that the result of an assignment is the left most result
+```c
+void strcpy(char *s, char *t)
+
+{
+    int i;
+    i = 0;
+
+    while ((s[i] = t[i]) != ′\0′) // Result of = is s[i]
+        i++;
+}
+```
+or
+```c
+   void strcpy(char *s, char *t)
+   {
+       while ((*s++ = *t++) != ′\0′)
+           ;
+   }
+ ```
