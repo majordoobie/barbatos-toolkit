@@ -4,7 +4,6 @@
 
 int main(void)
 {
-    printf("Are we hitting main?");
     Node *null_node = NULL;
     Node *head_node = make_node(0, null_node);
 
