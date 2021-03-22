@@ -27,3 +27,4 @@ ptr = (cast-type*)calloc(n, element-size);
 
 ## Resources
 [Memory Allocation](https://www.geeksforgeeks.org/dynamic-memory-allocation-in-c-using-malloc-calloc-free-and-realloc/)
+[Stack Frame](https://medium.datadriveninvestor.com/what-happens-when-you-call-a-function-3ef37f891175)

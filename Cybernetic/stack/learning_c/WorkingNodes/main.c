@@ -1,13 +1,21 @@
 #include <stdio.h>
-#include "node.h"
+#include "Node.h"
+
 
 int main(int argc, char **argv)
 {
-    // allocate memory for head
-    // insert nodes with corresponding integer values one by one
 
-    node one = make_node(10);
+    Node one = make_Node(10);
     printf("%p\n", &one);
 
     return 0;
 }
+
+
+
+
+
+
+
+// allocate memory for head
+// insert Nodes with corresponding integer values one by one

@@ -1,10 +1,10 @@
-typedef struct node
+typedef struct Node
 {
     int value;
-    struct node *left;
-    struct node *right;
+    struct Node *left;
+    struct Node *right;
 
-} node;
+} Node;
 
-struct node make_node(int value);
-struct node *make_node_ptr(int value);
+struct Node make_Node(int value);
+struct Node *make_Node_ptr(int value);

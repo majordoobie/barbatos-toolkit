@@ -1,16 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "node.h"
 
-node make_node(int value)
+Node make_Node(int value)
 {
-    node temp = {value};
+    Node temp = {value};
     printf("%p\n", &temp);
     return temp;
 }
 
-node *make_node_prt(int value)
+Node *make_Node_prt(int value)
 {
-    node temp = {value};
-    printf("%p\n", &temp);
-    return &temp;
+    Node *temp = (Node*)malloc(sizeof(Node));
+    temp->value = value;
+    printf("%p\n", temp);
+    
+    return temp;
 }
