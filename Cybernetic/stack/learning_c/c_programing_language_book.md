@@ -189,3 +189,106 @@ or
            ;
    }
  ```
+ 
+ - When storing an array of strings, remember that this is a array of arrays. But, even though you can legal use `int *b[10]` to make the same thing as `int a[10][20]` the latter sets aside 200 integers while the former doesn't initialize the inner array so the latter is the right way to do it
+ - Additionally, using a array to store a strings is just an array of arrays `char *name[] = {"Monday", "Tuesday"};`
+ ![](attachments/Pasted%20image%2020210319085447.png)
+ 
+ ### Command Line arguments
+ - When passing arguments to main from the command line there are two variables used `argc` which takes a count of the arguments and `argv` which is a array of arguments 
+ - Just like python, the first item in the array is the name of the program. Therefore, argc will always be at least 1
+ 
+ 
+ ## Chapter 6: Structures
+ - Attributes in structures are called members
+ - When creating a structure you can instantiate a object by passing in the list of expected variables
+ 
+ ```c
+ struct point
+ {
+ 	int x;
+	int y;
+ }
+ 
+ struct point declared;
+ struct point initialized = {100, 300};
+ ```
+ - Of course, it is more efficient to pass a pointer to a function rather than passing the values of the structure to the function which could have a ton of data
+ ```c
+struct point origin, *pp;
+pp = &origin;
+
+printf("origin is (%d,%d)\n", (*pp).x, (*pp).y);
+ ```
+ - Or you could use the short hand of `->` 
+ ```c
+ struct Node first = {100, 200};
+ struct Node *pointer = &first;
+ 
+ printf("First: %d\nSecond:%d\n\n", first.first, first.second);
+ printf("First: %d\nSecond:%d\n\n", (*pointer).first, (*pointer).second);
+ printf("First: %d\nSecond:%d\n\n", pointer->first, pointer->second);
+ ```
+ - When creating a array of structs you have the option of using a short cut that I think looks ugly
+ 
+ ```c
+ struct key
+ {
+ 	int val;
+	int val;
+ } array_key[MAX];
+ 
+ // vs
+ struct key
+ {
+ 	int val;
+	int val;
+ };
+ struct key array_key[MAX];
+ 
+ ```
+ 
+ ### Sizeof
+ - size of produces a unsigned integer representing the size of the object in bytes known as `size_t` this is defined in `stddef.h`
+
+### Typedef
+- Typedef allow you to create a new data type
+- For example using it to create a String data type
+```c
+typedef char *String;
+// equals
+String name = "Jay";
+char *name = "Jay";
+```
+
+- Or they can be used for structures too
+```c
+typedef struct tnode *Treeptr;
+
+typedef struct tnode {   /* the tree node: */
+    char *word;              /* points to the text */
+    int count;               /* number of occurrences */
+    Treeptr left;            /* left child */
+    Treeptr right;           /* right child */
+
+} Treenode;
+
+```
+
+- This creates two new types, Treenode and Treeptr. this just makes it easier to read
+
+
+## Chapter 7: Input and Output
+- The syntax `<` and `>` can be used to pull and push from a stream
+
+> When a C program is started, the operating system environment is responsible for opening three files and providing file pointers for them. These files are the standard input, the standard output, and the standard error; the corresponding file pointers are called stdin, stdout, and stderr, and are declared in <stdio.h>. Normally stdin is connected to the keyboard and stdout and stderr are connected to the screen, but stdin and stdout may be redirected to files or pipes as described in 
+### String functions
+![](attachments/Pasted%20image%2020210319130727.png)
+
+
+## Chapter 8: Unix Interface
+- file descriptor is analogous to file pointer used in unix or file handle used in windows
+- All information about the open file is handled by the system and programs interact with the resource using the pointer
+
+
+

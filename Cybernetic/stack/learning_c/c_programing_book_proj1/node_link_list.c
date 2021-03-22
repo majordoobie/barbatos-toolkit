@@ -1,13 +1,16 @@
 #include <stdio.h>
 
-struct Node
+
+typedef struct Nodes *NodePointer;
+typedef struct Nodes
 {
-    int val;
-    int* next_node;
-};
+    int value;
+    NodePointer left;
+    NodePointer right;
+} Node;
 
 int main(void)
 {
-    printf("Hellow");
+
     return 0;
 }
