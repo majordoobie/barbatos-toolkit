@@ -4,15 +4,11 @@
 
 int main(void)
 {
-    Node temp = make_node(10);
-
-
+    printf("Are we hitting main?");
     Node *null_node = NULL;
-    Node *head_node = make_node_ptr(0, null_node);
+    Node *head_node = make_node(0, null_node);
 
-
-
-
+    to_string(head_node);
     return 0;
 }
 
