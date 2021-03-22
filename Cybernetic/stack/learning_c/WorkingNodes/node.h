@@ -6,5 +6,5 @@ typedef struct Node
 
 } Node;
 
-struct Node make_Node(int value);
-struct Node *make_Node_ptr(int value);
+struct Node make_node(int value);
+struct Node *make_node_ptr(int value, Node *right_node);

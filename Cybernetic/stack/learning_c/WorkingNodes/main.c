@@ -1,12 +1,17 @@
 #include <stdio.h>
-#include "Node.h"
+#include "node.h"
 
 
-int main(int argc, char **argv)
+int main(void)
 {
+    Node temp = make_node(10);
 
-    Node one = make_Node(10);
-    printf("%p\n", &one);
+
+    Node *null_node = NULL;
+    Node *head_node = make_node_ptr(0, null_node);
+
+
+
 
     return 0;
 }

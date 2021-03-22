@@ -2,18 +2,19 @@
 #include <stdlib.h>
 #include "node.h"
 
-Node make_Node(int value)
+Node make_node(int value)
 {
     Node temp = {value};
-    printf("%p\n", &temp);
+    printf("Printing from make_node: %p\t\n", &temp);
     return temp;
 }
 
-Node *make_Node_prt(int value)
+Node *make_node_ptr(int value, Node *right_node)
 {
     Node *temp = (Node*)malloc(sizeof(Node));
     temp->value = value;
-    printf("%p\n", temp);
-    
+    temp->right = right_node;
+    printf("Printing from make_node_ptr: %p\t\n", temp);
+
     return temp;
 }
