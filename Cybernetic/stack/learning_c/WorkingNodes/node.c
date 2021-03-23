@@ -13,5 +13,5 @@ Node *make_node(int value, Node *right_node)
 
 void to_string(Node *node)
 {
-    printf("Node: %p has a value of %d", node, node->value);
+    printf("Node: %p has a value of %d\n", node, node->value);
 }
