@@ -13,10 +13,9 @@ int main(void)
 
     iter_nodes(head_node);
 
-//    get_last_node(head_node);
 
-
-
+    // clean up and free nodes
+    free_nodes(head_node);
     return 0;
 }
 

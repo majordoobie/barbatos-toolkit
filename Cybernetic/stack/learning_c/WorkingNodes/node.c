@@ -74,5 +74,12 @@ Node *get_last_node(Node *head_node)
 void free_nodes(Node *head_node)
 {
     Node *last_node = get_last_node(head_node);
-    
+    Node *current_node = last_node;
+    while (current_node != NULL)
+    {
+        current_node = current_node->left;
+        printf("Freeing node at: %p\n", last_node);
+        free(last_node);
+        last_node = current_node;
+    }
 }
