@@ -8,9 +8,12 @@ int main(void)
     Node *head_node = make_node(0, null_node);
 
     make_node(10, head_node);
+    make_node(324, head_node);
+    make_node(44, head_node);
 
     iter_nodes(head_node);
-    get_last_node(head_node);
+
+//    get_last_node(head_node);
 
 
 
