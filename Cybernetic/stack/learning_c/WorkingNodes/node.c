@@ -7,17 +7,17 @@
  * -----------------------
  * Constructor for making new nodes. It takes in head node
  */
-Node_var *make_node(int value, Node_var *head_node)
+Node *make_node(int value, Node *head_node)
 {
     // create the new node
-    Node_var *new_node = (Node_var*)malloc(sizeof(Node_var));
+    Node *new_node = (Node*)malloc(sizeof(Node));
     new_node->value = value;
     new_node->right = NULL;
 
     if (head_node != NULL)
     {
         //  get last node in the chain
-        Node_var *previous_node = get_last_node(head_node);
+        Node *previous_node = get_last_node(head_node);
         new_node->left = previous_node;
         previous_node->right = new_node;
     }
@@ -35,14 +35,14 @@ Node_var *make_node(int value, Node_var *head_node)
  * ------------------------
  * Prints the current node
  */
-void to_string(Node_var *node)
+void to_string(Node *node)
 {
-    printf("Node_var: %p has a value of %d\n", node, node->value);
+    printf("Node: %p has a value of %d\n", node, node->value);
 }
 
-void iter_nodes(Node_var *head_node)
+void iter_nodes(Node *head_node)
 {
-    Node_var *current_node = head_node;
+    Node *current_node = head_node;
     while (current_node != NULL)
     {
         to_string(current_node);
@@ -54,10 +54,10 @@ void iter_nodes(Node_var *head_node)
  * -------------------------------
  * Gets the last node by iterating to the right
  */
-Node_var *get_last_node(Node_var *head_node)
+Node *get_last_node(Node *head_node)
 {
-    Node_var *current_node = head_node;
-    Node_var *last_node = head_node;
+    Node *current_node = head_node;
+    Node *last_node = head_node;
     while (current_node != NULL)
     {
         last_node = current_node;
@@ -71,10 +71,10 @@ Node_var *get_last_node(Node_var *head_node)
  * ------------------------
  * Iterates over the nodes to free them
  */
-void free_nodes(Node_var *head_node)
+void free_nodes(Node *head_node)
 {
-    Node_var *last_node = get_last_node(head_node);
-    Node_var *current_node = last_node;
+    Node *last_node = get_last_node(head_node);
+    Node *current_node = last_node;
     while (current_node != NULL)
     {
         current_node = current_node->left;

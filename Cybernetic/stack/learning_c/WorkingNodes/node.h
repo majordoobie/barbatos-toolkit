@@ -4,10 +4,10 @@ typedef struct
     struct Node_var *left;
     struct Node_var *right;
 
-} Node_var;
+} Node;
 
-Node_var *make_node(int value, Node_var *head_node);
-void to_string(Node_var *node);
-void iter_nodes(Node_var *head_node);
-Node_var *get_last_node(Node_var *head_node);
-void free_nodes(Node_var *head_node);
+Node *make_node(int value, Node *head_node);
+void to_string(Node *node);
+void iter_nodes(Node *head_node);
+Node *get_last_node(Node *head_node);
+void free_nodes(Node *head_node);

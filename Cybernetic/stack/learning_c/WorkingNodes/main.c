@@ -4,8 +4,8 @@
 
 int main(void)
 {
-    Node_var *null_node = NULL;
-    Node_var *head_node = make_node(0, null_node);
+    Node *null_node = NULL;
+    Node *head_node = make_node(0, null_node);
 
     make_node(10, head_node);
     make_node(324, head_node);
