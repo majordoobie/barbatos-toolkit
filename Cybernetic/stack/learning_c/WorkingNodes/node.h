@@ -1,10 +1,12 @@
-typedef struct
-{
-    int value;
-    struct Node_var *left;
-    struct Node_var *right;
+//typedef struct
+//{
+//    int value;
+//    struct Node_var *left;
+//    struct Node_var *right;
+//
+//} Node_t;
 
-} Node_t;
+typedef struct Node Node_t;
 
 Node_t *make_node(int value, Node_t *head_node);
 void to_string(Node_t *node);
