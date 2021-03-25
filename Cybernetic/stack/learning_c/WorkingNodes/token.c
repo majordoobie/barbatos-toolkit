@@ -5,8 +5,7 @@
 
 struct Token
 {
-    int value;
-    enum tokenTypes type_type;
+    tokenType_t type;
     void *token;
 };
 
@@ -17,8 +16,15 @@ Token_t *make_token(tokenType_t type)
 
     if (type == Operator)
     {
-       *(new_node->token) =  10
+       new_node->token = (void *) '+';
+       new_node->type = type;
     }
-    new_node->token = 10;
+    else
+    {
+        new_node->token = (void *) 10;
+        new_node->type = type;
+    }
+    printf("Value is %d", (int *)new_node->token);
+
     return new_node;
 }

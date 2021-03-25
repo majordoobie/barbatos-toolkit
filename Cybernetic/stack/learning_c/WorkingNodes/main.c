@@ -20,7 +20,9 @@ int main(void)
 //    // clean up and free nodes
 //    free_nodes(head_node);
 
-    Token_t *node = make_node(10);
+    Token_t *node = make_token(Operand);
+
+
 
 
     return 0;
