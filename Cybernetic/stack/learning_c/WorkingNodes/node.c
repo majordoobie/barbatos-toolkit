@@ -22,10 +22,6 @@ struct Node
 Node_t *make_node(int value, Node_t *head_node)
 {
     // create the new node
-
-//    Node_t *new_node = (Node_t*)malloc(sizeof(Node_t));
-//    memset(new_node, 0, sizeof(Node_t));
-
     // All the data in the memory is set to Ox0
     Node_t *new_node = (Node_t*)calloc(1, sizeof(Node_t));
 
@@ -99,7 +95,6 @@ void free_nodes(Node_t *head_node)
     {
         current_node = current_node->left;
         printf("Freeing node at: %p\n", last_node);
-        free(last_node);
         free(last_node);
         last_node = current_node;
     }
