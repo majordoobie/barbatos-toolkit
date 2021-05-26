@@ -20,9 +20,9 @@ Logical OR operations are great for applying new values to your stream. Say we h
 Logical XOR operations are great for creating unique masks. For example, you can use it to create a mask that extracts the last 8 bits of an IP address to convert a stream back into dotted decimal.
 ```
 10110111 10011011
-11111111 00000000  # But 0s in places you want to keep
+11111111 00000000  # Put 0s in places you want to keep
 -----------------
-01001000 10011011  # Apply your new mask back to the original using &
+01001000 10011011  # Use XOR to create the unique mask
 
 10110111 10011011
 01001000 10011011 # apply mask with &
