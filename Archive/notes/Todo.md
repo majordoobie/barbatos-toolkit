@@ -1,0 +1,5 @@
+- [ ] Drop off donations 
+- [ ] Drop off trash
+- [ ] go to home depot 
+	- [ ] New locks for the U-Haul 
+	- [ ] New volt meter for cole 
