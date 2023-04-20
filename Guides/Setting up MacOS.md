@@ -67,6 +67,9 @@ This plugin provides a few utilities to interact between the terminal and finder
 ![[Pasted image 20230420124153.png]]
 ![[Pasted image 20230420124208.png]]
 
+##### docker
+Plugin provides auto completion but it does not working with "stacking"
+
 ```bash
 # zsh-autocomplete
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
@@ -86,6 +89,9 @@ plugins=(
 	# Build in
 	sudo
 	copyfile
+	docker
+	macos
+	jsontools
 
 	# Third party
 	zsh-autosuggestions
