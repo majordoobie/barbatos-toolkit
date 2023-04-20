@@ -86,15 +86,6 @@ Provides fish like syntax highlighting
 git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 ```
 
-##### zsh-completions ^[https://github.com/zsh-users/zsh-completions]
-Looks through the command you are running and attempts to provide completions suggestions 
-```bash
-git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
-```
-Must also set this value in `~/.zshrc`
-```bash
-fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
-```
 ##### zsh-autocomplete
 This seems to be a nicer completions system ^[https://github.com/marlonrichert/zsh-autocomplete]
 ```bash
