@@ -70,21 +70,46 @@ This plugin provides a few utilities to interact between the terminal and finder
 ##### docker
 Plugin provides auto completion but it does not working with "stacking"
 
+##### fzf ^[https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/fzf]
+This plugin taps into the `fzf` ^[https://github.com/junegunn/fzf] binary to enable the fuzzy finding within the zsh framework
+
+#### Community Plug-ins
+##### zsh-autosuggestions
+Integrates with the history of the terminal to provide you with suggestions for things you used in the past
 ```bash
-# zsh-autocomplete
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+##### zsh-syntax-highlighting
+Provides fish like syntax highlighting
+```bash
+git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+```
+
+##### zsh-completions ^[https://github.com/zsh-users/zsh-completions]
+Looks through the command you are running and attempts to provide completions suggestions 
+```bash
+git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions
+```
+Must also set this value in `~/.zshrc`
+```bash
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-completions/src
+```
+##### zsh-autocomplete
+This seems to be a nicer completions system ^[https://github.com/marlonrichert/zsh-autocomplete]
+```bash
+git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-autocomplete 
+```
+
+Then add the following near the top of the `~/.zshrc`
+```bash
+source ${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+```
 
 
 
-git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions 
 
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting 
-
-git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-completions 
-
-git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git \
-  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fast-syntax-highlighting
-
+```bash
 plugins=( 
 	# Build in
 	sudo
@@ -92,18 +117,15 @@ plugins=(
 	docker
 	macos
 	jsontools
+	fzf
+	vi-mode
 
 	# Third party
 	zsh-autosuggestions
- 
-	git 
-	vi-mode
-
+	zsh-syntax-highlighting
+	zsh-autocomplete
 )
 ```
-
-        zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting zsh-autocomplete
-
 
 
 
