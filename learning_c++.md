@@ -9,11 +9,11 @@ int a;
 ```
 - Then the compiler will allocate 4 bytes for this variable and the `lookup tabled` will list that variable a is an int and it's located in memory address x
 - When a variable, such as `a`, is initialized with a integer, say 5, the compiler will look in the lookup table and see that the variable `a` starts at memory address x then puts the binary 5 in that space
-![](attachments/Pasted%20image%2020210227172720.png)
+![](Pasted%20image%2020210227172720.png)
 
 - Pointers are variables that store the address of another variable
-![](attachments/Pasted%20image%2020210227174743.png)
-![](attachments/Pasted%20image%2020210227181349.png)
+![](Pasted%20image%2020210227174743.png)
+![](Pasted%20image%2020210227181349.png)
 
 ### Working with pointers
 - If you were to increment a pointer, say by 1, it would increment one `value` based on the data type. For integers, this is four bytes. So incrementing by 1 increments by 4 bytes.
@@ -64,7 +64,7 @@ int main()
 ### pointers as function arguments
 - When you run your program the application in memory creates four parts, the code portion, the static/global portion, the stack portion and the heap portion
 - Each scope of your program is saved in a record called the stack frame. All variables for that scope are saved in that frame
-![](attachments/Pasted%20image%2020210227213201.png)
+![](Pasted%20image%2020210227213201.png)
 
 
 ## Caleb's playlist
@@ -114,7 +114,7 @@ class A
 }
 ```
 
-![](attachments/Pasted%20image%2020210228022424.png)
+![](Pasted%20image%2020210228022424.png)
 
 ```
 <program> → <exp> , <assigns> ;
