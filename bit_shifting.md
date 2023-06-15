@@ -37,7 +37,7 @@ Shifts are useful for positioning your bits in the correct positions. For exampl
 | 192    | 186    | 85     | 42     |
 | 11000000 | 10111010 | 01010101 | 00101010 |
 
-As shown above, each section of a IP is 8 bits. But when you put the stream of IPs together you get a 32 bit stream. Remeber that the first octet is 192 in decimal. If we were to extract that out and clear all other other bits we would have:
+As shown above, each section of a IP is 8 bits. But when you put the stream of IPs together you get a 32 bit stream. Remember that the first octet is 192 in decimal. If we were to extract that out and clear all other other bits we would have:
 ` 11000000 00000000 00000000 00000000` If we convert this binary stream into decimal we get `3221225472`.   
 
 `192 != 3221225472`
