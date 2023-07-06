@@ -17,7 +17,7 @@
 - This means that hardware access has to go through the OS to communicate with the HAL API
 - Docker is a LXC type of container 
 - When you spin up a container on Windows it use to run on a Virtual Box shim. Now a days it runs on Hyper-V
-- Docker is designed to run a specific task like a Meeseeks
+- Docker is designed to run a specific task like a Meeseeks from 
 
 ![](Pasted%20image%2020210127162358.png)
 
