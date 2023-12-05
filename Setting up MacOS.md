@@ -1,5 +1,14 @@
-up::[[Root]]
-Tags:: #code #guides #env 
+---
+parent file:
+  - "[[Published]]"
+related: 
+creation data: 2023-12-05, 07:11
+tags:
+  - "#guides"
+  - "#os"
+  - "#env"
+---
+
 # Setting up MacOS
 
 ## Setting Space Shortcut

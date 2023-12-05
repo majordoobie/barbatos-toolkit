@@ -1,3 +1,14 @@
+---
+parent file:
+  - "[[Published]]"
+related: 
+creation data: 2020--12-05, 07:09
+tags:
+  - "#guides"
+---
+# docker-notes
+ 
+
 # docker-notes
 ## TOC
 - [About Docker](#1)

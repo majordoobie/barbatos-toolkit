@@ -1,3 +1,13 @@
+---
+parent file:
+  - "[[Published]]"
+related: 
+creation data: 2020-12-05, 07:09
+tags:
+  - "#guides"
+---
+
+
 # Basic Bitwise Operations
 ## AND / & 
 Logical AND operations are awesome for extracting the sections of your bit steam. This is why it is used with a mask in order to "zero out" the sections that you do not need.

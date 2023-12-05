@@ -1,3 +1,13 @@
+---
+parent file:
+  - "[[Published]]"
+related: 
+creation data: 2023-12-05, 07:12
+tags:
+  - "#guides"
+  - "#env"
+---
+
 # VIM-Notes
 - Originated in 1976, VIM is designed to be a `modal`editor since it has "modes" that you enter and leave
 - vim supports the following modes:
