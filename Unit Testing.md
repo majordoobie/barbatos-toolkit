@@ -6,7 +6,7 @@ creation data: 2023-12-05, 06:56
 tags:
   - "#guides"
 ---
-
+k
 # Unit Testing
 ## Test-Driven Development (TDD) 
 TDD is a software development process that relies on the repetition of very short development cycle to promote instant feedback loops. The feedback loop is often reffered to as the `tracer bullet development (TBD)` which is just a metaphor for software development based on the idea of instant, real-time feedback under actual conditions. It is based on the idea of taking some single feature, single action, single thread of work flow, and implementing it all the way through the system under construction. 
