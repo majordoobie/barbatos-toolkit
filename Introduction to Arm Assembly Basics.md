@@ -19,11 +19,28 @@ Advantages and disadvantages
 - Unlike x86, ARM is big-endian with the option of switching making it BI-Endian 
 - ARM also has two modes, ARM mode and Thumb mode 
 
-ARM versions 
+ARM versions [^Azeria]
 ![[Pasted image 20231207095750.png]]
 
+## What is assembly 
+- assembly is a thin layer of syntax on top of machine code which is composed of instructions 
+- to be able to write assembly you need a program to convert the assembly language to machine code. An example of that is the gnu assembler. We will then need to link it which probably adds a runtime if I am not mistaken. 
+```bash
+as program.s -o program.o
+ld program.o -o program
+```
 
+The code above is automatically accomplished by a compiler
 
+```bash
+gcc program.c -o program 
+```
+
+## Assembly Syntax
+The syntax of assembly is broken down into `mnemonics` `operand` for example 
+```asm 
+MOV R1, R2
+```
 
 ---
 # Resources
