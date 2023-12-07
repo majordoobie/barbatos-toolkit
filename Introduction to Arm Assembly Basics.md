@@ -77,8 +77,13 @@ The amount of registers depends on the ARM version. According to the ARM referen
 
 ![[Pasted image 20231207150542.png]]
 
-**R0-R12** can be used during common operations to store temporary values, pointers, etc. **R0** for example can be referred as **accumulator** during the 
+**R0-R12** can be used during common operations to store temporary values, pointers, etc. **R0** for example can be referred as **accumulator** during the arithmetic operations. The calling convention of ARM specifies that the first four registers must be used for the first four paramters to a function call
 
+**R13: SP** the stack pointer points to the top of the stack. The stack is an area of memory used for function-specific storage, which is reclaimed when the function returns. The stack pointer is therefor used for allocating space on the stack, by subtracting the values in bytes we want to allocate from the stack pointer. In other words, if we want to allocate a 32 bit value, we subtract 4 from the stack pointer.
+
+**R14: LR (Link register)** When a function call is made, the link register gets updated with a memory address referencing the next instruction where the function was initiated from. Doing this allows the program to return to the "parent" function initiated by the "child".
+
+**R15: PC (Program Counter)** The Program Counter is automatically incremented by the size of the instruction executed. This size is always 4 bytes in ARM state and 2 bytes in THUMB mode. When a branch instruction is being executed, the PC holds the destination address. During execution, PC stores the address of the current instruction plus 8 (two ARM instructions) in ARM state, and the current instruction plus 4 (two Thumb instructions) in Thumb(v1) state. This is different from x86 where PC always points to the next instruction to be executed.
 
 ---
 # Resources
