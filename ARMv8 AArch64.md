@@ -45,7 +45,12 @@ Typical memory outputs are dumped in hex with 16 bytes across. Since they are 16
 The hex outlined in red shows the first 4 bytes (word) at address `0x80516074` therefore you can state that the word at address `0x80516074` is `0x38A00000`
 
 # Chapter 4: Basic Registers
+In modern CPU have thousands of registers but we don’t have to worry about most of them. 
 
+Registers are spit into three groups 
+- General (GPRs)
+- Float (FPRs)
+- Special (SPRs)
 
 ---
 # Resources
