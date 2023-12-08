@@ -86,7 +86,7 @@ The amount of registers depends on the ARM version. According to the ARM referen
 **R15: PC (Program Counter)** The Program Counter is automatically incremented by the size of the instruction executed. This size is always 4 bytes in ARM state and 2 bytes in THUMB mode. When a branch instruction is being executed, the PC holds the destination address. During execution, PC stores the address of the current instruction plus 8 (two ARM instructions) in ARM state, and the current instruction plus 4 (two Thumb instructions) in Thumb(v1) state. This is different from x86 where PC always points to the next instruction to be executed.
 
 
-# ARM32 vs ARM64 (AArch64) 
+# ARM32 vs [[ARMv8 AArch64]]
 The examples in the Azeria guide are in ARM32 which is causing issues with my understanding. I am going to pivot into a AArch64 specific guide first to learn the basics then go back to writting shell code.
 
 Reasons to learn assembly include:
