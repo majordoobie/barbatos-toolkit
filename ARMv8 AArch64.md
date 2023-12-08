@@ -34,6 +34,11 @@ What are some advantages to learning assembly?
 - A better Understanding of "under the hood" stuff (such as Memory Management, Cache, etc)
 
 # Chapter 3: Navigating Through Memory
+The region of memory that programs typically reside is called **static memory** or **main memory**. This is because every time a specific program is executed by the CPU, the CPU instructions are usually placed at the same locations within the **static memory** every single time. 
+> I am guessing that they are talking about virtual memory here, not physical
+
+The fixed length of memory addresses are determined by the CPU itself and some special properties of the CPU that are determined/written by a program shortly after said CPU has booted or been reset. Example: `0x80516074`
+
 
 
 
