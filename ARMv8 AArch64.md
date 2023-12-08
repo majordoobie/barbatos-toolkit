@@ -58,7 +58,8 @@ The Cortex-A57 has 31GPRs `r0` to `r30`  each register is 64 bits wide so they f
 
 Two of the GPRs have aliases. `r29` is known as the **f ame pointer FP** and `r30` is known as the **link register (LR)**
 
-
+a couple special registers to mention are the:
+- **Program Counter PC** 
 
 ---
 # Resources
