@@ -52,6 +52,8 @@ Registers are spit into three groups
 - Float (FPRs)
 - Special (SPRs)
 
+The guide here follows the ARM Cortex-A57 CPU which uses ARMv8 AArch64 assembly language. 
+
 ---
 # Resources
  `[Example](Link)`
