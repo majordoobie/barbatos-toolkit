@@ -46,7 +46,8 @@ MOV R1, R2
 
 ## Data Types
 Just like HLL there are different data types that ARM operations work on. The data types are signed or unsigned `words`, `havewords` and `bytes` [^Azeria]
-![[Pasted image 20231207143047.png]]
+
+![](assets/images/Pasted%20image%2020231208080130.png)
 These data types of extentios associated with them being `-h` or `sh` for halfwords, `b` or `sb` for bytes and no extension for words
 
 Example of how these are used:
@@ -73,9 +74,9 @@ Before ARMv3, the architecture was little-endian, since then it has become [[BI-
 
 ## Registers
 The amount of registers depends on the ARM version. According to the ARM reference Manual [^ARM_Manual] there are **30 general-purpose 32-bit registers**. The first 16 registers are accessible in the **user-level mode**. The additional registers are available in privilege software execution. 
-![[Pasted image 20231207150414.png]]
 
-![[Pasted image 20231207150542.png]]
+![](assets/images/Pasted%20image%2020231208080202.png)
+![](assets/images/Pasted%20image%2020231208080212.png)
 
 **R0-R12** can be used during common operations to store temporary values, pointers, etc. **R0** for example can be referred as **accumulator** during the arithmetic operations. The calling convention of ARM specifies that the first four registers must be used for the first four paramters to a function call
 

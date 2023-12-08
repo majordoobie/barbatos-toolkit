@@ -20,8 +20,8 @@ It is important to note that the implementation may differ between hardware. For
 Endianness is the byte-order in which each byte of an object is stored in memory. Little-endian (LE) like x86 is stored where the **least-significant-byte** is stored at the lowest address. Addresses typically grow from bottom to top, were the bottom is the lowest address. Therefore, in little-endian the bytes flow in the oder from bottom to top.
 
 Big-endian on the other hand is the other way around and it is the preferred byte-order of networking data
+![](assets/images/Pasted%20image%2020231208080046.png)
 
-![[Pasted image 20231207145528.png]]
 
 ---
 # Resources
