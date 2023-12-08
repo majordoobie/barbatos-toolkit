@@ -56,10 +56,15 @@ The guide here follows the ARM Cortex-A57 CPU which uses ARMv8 AArch64 assembly 
 
 The Cortex-A57 has 31GPRs `r0` to `r30`  each register is 64 bits wide so they fit 2 words each. 
 
-Two of the GPRs have aliases. `r29` is known as the **f ame pointer FP** and `r30` is known as the **link register (LR)**
+Two of the GPRs have alternate names
+- `r29` being the **frame pointer FP**
+- `r30` being the **link register LR**
 
-a couple special registers to mention are the:
-- **Program Counter PC** read only register keeps track of where the cpu is currently executing 
+Two special registers to also mention are 
+- **program counter PC**
+  - read only register keeps track of what instruction the CPU is currently executing 
+- **Stack Pointer SP**
+  - SP is used in conjunction with **LR** for subroutine use 
 
 ---
 # Resources
