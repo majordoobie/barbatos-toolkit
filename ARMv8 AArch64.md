@@ -66,6 +66,15 @@ Two special registers to also mention are
 - **Stack Pointer SP**
   - SP is used in conjunction with **LR** for subroutine use 
 
+
+# Chapter 5: Assembler Installation & Quick Overview
+Some of the tools used in the tutorial are: 
+
+- **aarch64-linux-gnu-as** (The actual Assembler, what we use to make an object file out of a source text file written in ARMv8 Assembly)
+- **aarch64-linux-gnu-ld** (Called the Linker. In the most basic terms, it creates an executable file out of an object file)
+- **aarch64-linux-gnu-objdump** (What we use to see the Assembly Instructions contained within an Object file)
+
+
 ---
 # Resources
  `[Example](Link)`
