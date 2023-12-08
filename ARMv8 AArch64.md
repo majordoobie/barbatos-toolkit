@@ -40,7 +40,7 @@ The region of memory that programs typically reside is called **static memory** 
 The fixed length of memory addresses are determined by the CPU itself and some special properties of the CPU that are determined/written by a program shortly after said CPU has booted or been reset. Example: `0x80516074`
 
 ## Navigating Memory
-Typical memory outputs are dumped in hex with 16 bytes across. Since they are 16 bytes across, each row increments by 16 bytes or `0x10` making it easier to visualize the increments. So, if you want to find address `0x80516074`, you start from the stop at `0x80516000` and go down 7 rows until you find `0x80516070` then go to the right 4 bytes! ![](Pasted%20image%2020231208075636.png)
+Typical memory outputs are dumped in hex with 16 bytes across. Since they are 16 bytes across, each row increments by 16 bytes or `0x10` making it easier to visualize the increments. So, if you want to find address `0x80516074`, you start from the stop at `0x80516000` and go down 7 rows until you find `0x80516070` then go to the right 4 bytes! ![](assets/images/Pasted%20image%2020231208075830.png)
 
 
 ---
