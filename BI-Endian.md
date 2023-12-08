@@ -1,6 +1,6 @@
 ---
 parent file:
-  - "[[Root]]"
+  - "[[Published]]"
 related:
   - "[[Introduction to Arm Assembly Basics]]"
 creation data: 2023-12-07, 14:42
