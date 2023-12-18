@@ -75,6 +75,16 @@ Some of the tools used in the tutorial are:
 - **aarch64-linux-gnu-objdump** (What we use to see the Assembly Instructions contained within an Object file)
 
 
+# Chapter 6: Instruction Format
+The GRPs have two different modes, **Extended** and **Non-Extended** 
+
+- **Extended** 
+	- indicates that the whole 64 bits of the register will be used. 
+	- prefixing the register with **x** will denote that the **Extended** mode is to be used I.e. x22
+- **Non-Extended**
+	- Only utilize the lower (right side) bits of the register 
+	- Prefixing the register with **d** will denote that **Non-Extended** mode is to be used I.e. w11
+
 ---
 # Resources
  `[Example](Link)`
