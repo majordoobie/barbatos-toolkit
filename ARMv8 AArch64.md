@@ -85,9 +85,25 @@ The GRPs have two different modes, **Extended** and **Non-Extended**
 	- Only utilize the lower (right side) bits of the register 
 	- Prefixing the register with **d** will denote that **Non-Extended** mode is to be used I.e. w11
 
+
+# Low Level Learning Video
+- The army architecture has two operating modes: 
+	- ARM - 4-byte instructions
+	- THUMB - 2-byte instructions 
+- ARM is byte addressable meaning that you can request any size memory unlike `mips` which requires you to request in 4-byte chunks
+
+- ARM Instructions take the form of
+```
+<operator> <dst>, <src>
+<operator> <dst>, <immediate> # Immediate being a const
+<operator> <dst>, [address]
+```
+
+
 ---
 # Resources
  `[Example](Link)`
  `[^Example]: Link    || [^Example]`
 
 [AArch64/ARM64](https://mariokartwii.com/armv8/)
+[Armv8 Video](https://www.youtube.com/watch?v=FV6P5eRmMh8&t=16s)
