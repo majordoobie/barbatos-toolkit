@@ -101,12 +101,12 @@ The GRPs have two different modes, **Extended** and **Non-Extended**
 
 - Basic ARMv8 file
 ```arm-asm
-.global _start
-section .text
+.global _start # Make _start globally accesible needed to compile
+section .text # Defines that this section is .text (code)
 
 _start:
 
-.section .data
+.section .data # defined that this section is .data
 ```
 
 
