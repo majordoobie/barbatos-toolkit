@@ -92,6 +92,12 @@ The value type `immediate` is basically a constant value that is numercal and is
 
 When dealing with **negative signed numbers** you must have the first bit of the immediate value by 1 and you must also have a condition branch set which is covered in chapter 10.
 ![](assets/images/Pasted%20image%2020240108140053.png)
+
+## ARMv8 vs AArch64
+`AArch74` is a specific instruction set within the entire `ARMv8` architecture. It is the standard instruction set for `ARMv8`. `ARMv8` does have two additional modes it can operate in, `AArch32/ARM32` or `Thumb32` for further compatability.
+
+
+
 # Low Level Learning Video
 - The army architecture has two operating modes: 
 	- ARM - 4-byte instructions
