@@ -85,6 +85,9 @@ The GRPs have two different modes, **Extended** and **Non-Extended**
 	- Only utilize the lower (right side) bits of the register 
 	- Prefixing the register with **d** will denote that **Non-Extended** mode is to be used I.e. w11
 
+## Register Formats
+![](assets/images/Pasted%20image%2020240108134518.png)
+
 
 # Low Level Learning Video
 - The army architecture has two operating modes: 
