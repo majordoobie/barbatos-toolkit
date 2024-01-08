@@ -91,7 +91,7 @@ The GRPs have two different modes, **Extended** and **Non-Extended**
 The value type `immediate` is basically a constant value that is numercal and is not represented by what's in the Register. i.e. `mov d0, #1`
 
 When dealing with **negative signed numbers** you must have the first bit of the immediate value by 1 and you must also have a condition branch set which is covered in chapter 10.
-
+![](assets/images/Pasted%20image%2020240108140053.png)
 # Low Level Learning Video
 - The army architecture has two operating modes: 
 	- ARM - 4-byte instructions
