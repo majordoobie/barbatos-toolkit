@@ -100,7 +100,7 @@ The GRPs have two different modes, **Extended** and **Non-Extended**
 ```
 
 - Basic ARMv8 file
-```asm
+```arm-asm
 .global _start
 section .text
 
