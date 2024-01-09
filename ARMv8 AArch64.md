@@ -129,6 +129,15 @@ movk   x0, #0x7f, lsl #32    |
 ```
 
 
+>With both **_mov_** and _**movk**_, you can use the following template to fill in any custom 64-bit value to a GPR~  
+>
+_// xD = Register  
+// Value = 0xWWWWXXXXYYYYZZZZ  
+mov xD, 0xWWWW000000000000  
+movk xD, 0xXXXX, lsl #32  
+movk xD, 0xYYYY, lsl #16  
+movk xD, 0xZZZZ_
+
 
 
 
