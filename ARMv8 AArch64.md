@@ -103,6 +103,15 @@ When looking at the registers in gdb keep in mind that the decimal table (far ri
 
 Some assemblers like the gnu assembler does not require immediate values to be prefixed with `#` but it is good practice todo so as that is the official way to do it. 
 
+# Chapter 8: Writing Full Values to Registers
+It is a common problem with new users to write invalid number ranges into a GRP. The error is called **Invalid Immediate Value**. There are two techniques that this chapter is going to teach us to get around it.
+1. **Literal Pools**
+2. **Using "move" type instructions**
+
+## Literal Pools
+Literal Pool is basically an Assembler trick that allows us to write in values to a register without using a **mov-type** instruction
+
+To signal to the assembler that the instruction is using a pool literal
 
 
 
