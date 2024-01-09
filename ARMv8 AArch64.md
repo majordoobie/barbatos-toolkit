@@ -111,7 +111,13 @@ It is a common problem with new users to write invalid number ranges into a GRP.
 ## Literal Pools
 Literal Pool is basically an Assembler trick that allows us to write in values to a register without using a **mov-type** instruction
 
-To signal to the assembler that the instruction is using a pool literal
+To signal to the assembler that the instruction is using a pool literal you use the **=** symbol when assigning with a literal as such:
+```arm-asm
+ldr w10, =0x5FFF0FFF
+```
+
+## Using "move" type instructions 
+
 
 
 
