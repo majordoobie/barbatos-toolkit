@@ -101,7 +101,7 @@ When dealing with **negative signed numbers** you must have the first bit of the
 ![](assets/images/Pasted%20image%2020240108190909.png)
 When looking at the registers in gdb keep in mind that the decimal table (far right) will display the decimal in **64-bit signed decimal**. This cannot be changed it is a limitation of gdb 
 
-
+Some assemblers like the gnu assembler does not require immediate values to be prefixed with `#` but it is good practice todo so as that is the official way to do it. 
 
 # Low Level Learning Video
 - The army architecture has two operating modes: 
