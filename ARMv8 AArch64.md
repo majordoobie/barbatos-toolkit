@@ -103,6 +103,15 @@ When looking at the registers in gdb keep in mind that the decimal table (far ri
 
 Some assemblers like the gnu assembler does not require immediate values to be prefixed with `#` but it is good practice todo so as that is the official way to do it. 
 
+
+
+
+
+
+
+
+
+---
 # Low Level Learning Video
 - The army architecture has two operating modes: 
 	- ARM - 4-byte instructions
