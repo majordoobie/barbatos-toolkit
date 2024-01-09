@@ -98,6 +98,8 @@ When dealing with **negative signed numbers** you must have the first bit of the
 ![](assets/images/Pasted%20image%2020240108141139.png)
 
 # Chapter 7: Basic Instructions 
+![](assets/images/Pasted%20image%2020240108190909.png)
+When looking at the registers in gdb keep in mind that the decimal table (far right) will display the decimal in **64-bit signed decimal**. This cannot be changed it is a limitation of gdb 
 
 
 
