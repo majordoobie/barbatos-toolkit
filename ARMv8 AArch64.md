@@ -117,7 +117,14 @@ ldr w10, =0x5FFF0FFF
 ```
 
 ## Using "move" type instructions 
+When performing `mov` instructions it seems like the instruction only operates in the first two bytes of the immediate value. Therefore, we have to perform several variants of the `mov`opperation [^mov_imm]
 
+```arm-asm 
+instruction                     value of x0
+mov    x0, #0x1f88           |        0x1f88
+movk   x0, #0xb7fb, lsl #16  |     M  0xb7fb1f88
+movk   x0, #0x7f, lsl #32    |        0x7fb7fb1f88 
+```
 
 
 
@@ -158,4 +165,7 @@ _start:
  `[^Example]: Link    || [^Example]`
 
 [AArch64/ARM64](https://mariokartwii.com/armv8/)
+
 [Armv8 Video](https://www.youtube.com/watch?v=FV6P5eRmMh8&t=16s)
+
+[^mov_imm]: https://stackoverflow.com/questions/53268118/whats-the-difference-between-mov-movz-movn-and-movk-in-armv8-assembly 
