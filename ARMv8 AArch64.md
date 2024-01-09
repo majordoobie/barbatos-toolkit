@@ -119,12 +119,15 @@ ldr w10, =0x5FFF0FFF
 ## Using "move" type instructions 
 When performing `mov` instructions it seems like the instruction only operates in the first two bytes of the immediate value. Therefore, we have to perform several variants of the `mov`opperation [^mov_imm]
 
+The link gives the example of moving the immediate value of `0x7fb7fb1f88` into register `x0`
 ```arm-asm 
-instruction                     value of x0
-mov    x0, #0x1f88           |        0x1f88
-movk   x0, #0xb7fb, lsl #16  |     M  0xb7fb1f88
-movk   x0, #0x7f, lsl #32    |        0x7fb7fb1f88 
+instruction                 value of x0
+mov    x0, #0x1f88    |    0x1f88
+movk   x0, #0xb7fb, lsl #16  |  0xb7fb1f88
+movk   x0, #0x7f, lsl #32    |
+0x7fb7fb1f88 
 ```
+
 
 
 
