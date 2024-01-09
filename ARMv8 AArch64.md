@@ -97,6 +97,7 @@ When dealing with **negative signed numbers** you must have the first bit of the
 `AArch74` is a specific instruction set within the entire `ARMv8` architecture. It is the standard instruction set for `ARMv8`. `ARMv8` does have two additional modes it can operate in, `AArch32/ARM32` or `Thumb32` for further compatability.
 ![](assets/images/Pasted%20image%2020240108141139.png)
 
+# Chapter 7: Basic Instructions 
 
 
 
