@@ -138,6 +138,9 @@ movk xD, 0xXXXX, lsl #32
 movk xD, 0xYYYY, lsl #16  
 movk xD, 0xZZZZ_
 
+# Chapter 9: Basic Loads & Stores; Big vs Little Endian
+Legend for the instructions to follow
+![](assets/images/Pasted%20image%2020240110170032.png)
 
 
 
