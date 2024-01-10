@@ -42,23 +42,26 @@ int main(int argc, char * argv[]) {
 ```
 
 The it compares it to the assembly of it which looks like this
-```arm-asm
+```armasm
 	// The .global insructs the assembler to make main visible 
 	// to the linker. If compiling with crt, you will need a
 	// main function/label by default
     .global main
 
+// The label main only differs from top and bottom by it being the 
+// only one that is visible to the linker because of the .global 
+// directive above
 main:
     stp     x21, x30, [sp, -16]!    // push onto stack
     mov     x21, x1                 // argc -> x0, argv -> x1
     
-    top:
+top:
     ldr     x0, [x21], 8            // argv++, old value in x0
     cbz     x0, bottom              // if *argv == NULL goto bottom
     bl      puts                    // puts(*argv)
     b       top                     // goto top
     
-    bottom:
+bottom:
     ldp     x21, x30, [sp], 16      // pop from stack
     mov     x0, xzr                 // return 0
     ret
