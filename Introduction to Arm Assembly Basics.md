@@ -11,7 +11,7 @@ tags:
 ---
 # Introduction to Arm Assembly Basics
 
-The series is focused on the basics of ARM with the perspective of writting shell code for the platform [^Azeria]
+The series is focused on the basics of ARM with the perspective of writing shell code for the platform [^Azeria]
 
 - ARM is a RISC (reduced instruction set computing) but with their own licensing. So while ARM requires licensing fees to use their IP RISCV has no restrictions [^RISCV_About]
 
