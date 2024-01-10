@@ -2,7 +2,7 @@
 parent file:
   - "[[Published]]"
 related:
-  - "[[Introduction to Arm Assembly Basics]]"
+  - "[[arm_assembly/Introduction to Arm Assembly Basics]]"
 creation data: 2023-12-07, 14:42
 tags:
   - "#guides"
