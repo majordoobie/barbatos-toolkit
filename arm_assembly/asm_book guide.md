@@ -18,7 +18,10 @@ In order to make a system call there are 3 things that need to be met
 
 Linux supports many system calls but depending on the platform the number for the system call has changed. This link shows a whole list of the system calls per architecture: [link](https://gpages.juszkiewicz.com.pl/syscalls-table/syscalls.html)
 
+## Using compilers to automation
+![](assets/images/Pasted%20image%2020240110163718.png)
 
+Instead of manually assembling and linking we can use gcc/clang to automate the process for us assuming that we want to link the **crt**
 
 
 
