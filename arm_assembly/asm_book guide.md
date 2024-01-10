@@ -23,6 +23,51 @@ Linux supports many system calls but depending on the platform the number for th
 
 Instead of manually assembling and linking we can use gcc/clang to automate the process for us assuming that we want to link the **crt**
 
+# Hello World Example
+The book starts with comparing a C and Assembly version of a helloworld program
+
+```c
+#include <stdio.h>
+
+int main(int argc, char * argv[]) {
+	top:
+		if (*argv == NULL)
+			goto bottom;
+		puts(*(argv++));
+		goto top;
+
+	bottom:
+		return 0;
+}
+```
+
+The it compares it to the assembly of it which looks like this
+```arm-asm
+	// The .global insructs the assembler to make main visible 
+	// to the linker. If compiling with crt, you will need a
+	// main function/label by default
+    .global main
+
+main:
+    stp     x21, x30, [sp, -16]!    // push onto stack
+    mov     x21, x1                 // argc -> x0, argv -> x1
+    
+    top:
+    ldr     x0, [x21], 8            // argv++, old value in x0
+    cbz     x0, bottom              // if *argv == NULL goto bottom
+    bl      puts                    // puts(*argv)
+    b       top                     // goto top
+    
+    bottom:
+    ldp     x21, x30, [sp], 16      // pop from stack
+    mov     x0, xzr                 // return 0
+    ret
+    
+    .end
+```
+
+
+
 
 
 ---
