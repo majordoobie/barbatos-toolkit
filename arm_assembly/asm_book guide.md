@@ -16,6 +16,10 @@ In order to make a system call there are 3 things that need to be met
 2. The **w8** register must be populated with the system call that we want to make [^system_call_num]
 3. The **svc** instruction is executed which elevates the program from EL0 to EL1 to perform the call
 
+Linux supports many system calls but depending on the platform the number for the system call has changed. This link shows a whole list of the system calls per architecture: [link](https://gpages.juszkiewicz.com.pl/syscalls-table/syscalls.html)
+
+
+
 
 
 ---
@@ -24,6 +28,7 @@ In order to make a system call there are 3 things that need to be met
  `[^Example]: Link    || [^Example]`
  
 [asm_book](https://github.com/pkivolowitz/asm_book/tree/main)
+[List of System Calls by Arch](https://gpages.juszkiewicz.com.pl/syscalls-table/syscalls.html)
 
 [^system_call]: https://github.com/pkivolowitz/asm_book/blob/main/more/system_calls/README.md
 
