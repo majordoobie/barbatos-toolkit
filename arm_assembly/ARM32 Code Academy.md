@@ -58,8 +58,13 @@ _start:
 list:
 	.word 4,3,-1,0
 ```
-- 
-
+**.data** 
+- indicates the start of the data section. 
+- Data in here is stored in the stack 
+**list:**
+- just like the function labels these labels are like variables
+**.word** 
+- the data type of the label. 
 
 ---
 # Resources
