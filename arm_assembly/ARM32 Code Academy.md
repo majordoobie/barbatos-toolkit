@@ -50,6 +50,7 @@ _start:
 Finally we have direct addressing. This involves moving data from the stack into a register. But first we need to figure out how to get data into the stack. 
 ```armasm
 .global _start
+	ldr r0, =list
 
 _start:
 	ldr r0, =list
@@ -64,10 +65,15 @@ list:
 **list:**
 - just like the function labels these labels are like variables
 **.word** 
-- the data type of the label. 
+- the data type of the label. In this case each element in our array is a **.word** or 32 bits
+**ldr** 
+- the `ldr` instruction loads the address of the label into the register. The location of a label has to be prefixed with `=`
+- This is known as direct addressing 
+- Just like in c, the address of the array is also the first element. So really, the destination register contains the address if the first element 
 
 ---
 # Resources
  `[Example](Link)`
  `[^Example]: Link    || [^Example]`
  
+[freeCodeCamp](https://youtu.be/gfmRrPjnEw4?si=oY9XhUFZX8pPmshU)
