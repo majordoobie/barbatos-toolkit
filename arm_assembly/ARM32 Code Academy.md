@@ -25,7 +25,7 @@ Some of the special registers are
 
 _start:
 	mov r7, #1
-	swi 0
+	svc 0
 
 ```
 
@@ -37,6 +37,8 @@ Immediate addressing involves moving from immediate value into a register
 
 _start:
 	mov r0, #1
+	mov r7, #1
+	svc 0
 ```
 
 Registered direct addressing is when we move data from one register into another
@@ -45,12 +47,20 @@ Registered direct addressing is when we move data from one register into another
 
 _start:
 	mov r1, r0
+	mov r7, #1
+	svc 0
 ```
 
 Finally we have direct addressing. This involves moving data from the stack into a register. But first we need to figure out how to get data into the stack. 
 ```armasm
 .global _start
 	ldr r0, =list
+	ldr r1, [r0]
+	ldr r2, [r0, #4] //indirct addressing
+	ldr r3, [r0, #4]! // pre addressing
+	ldr r4, [r0], #4 // pre addressing 
+	mov r7, #1
+	svc 0
 
 _start:
 	ldr r0, =list
@@ -62,14 +72,34 @@ list:
 **.data** 
 - indicates the start of the data section. 
 - Data in here is stored in the stack 
+
 **list:**
 - just like the function labels these labels are like variables
+
 **.word** 
 - the data type of the label. In this case each element in our array is a **.word** or 32 bits
-**ldr** 
+
+**ldr r0, =list** 
 - the `ldr` instruction loads the address of the label into the register. The location of a label has to be prefixed with `=`
-- This is known as direct addressing 
+- This is known as **direct addressing**
 - Just like in c, the address of the array is also the first element. So really, the destination register contains the address if the first element 
+
+**ldr r1, [r0]**
+- this syntax known as **register indirect addressing** is how you fetch the data of an address. 
+- The square bracket does the fetching just like the star operator in C 
+
+**ldr r2, [r0, #4]**
+- fetches the next value by incrementing the start address by 4 bytes. This works because each data type in the array is a word or 4 bytes long 
+
+**ldr r3, [r0, #4]!**
+- the exclamation at the end performs a **pre-increment**
+- this will change the address before doing a indirect addressing. The difference is that the **r0** will maintain the changed address after the addressing 
+
+**ldr r4, [r0], #4**
+- this is **post-increment**  think as the brackets doing the addressing **AND THEN** the address is moved forward. Just like pre, the address is permanently changed in r0
+
+
+# Arithmetic and CSPR flags 
 
 ---
 # Resources
