@@ -137,6 +137,16 @@ _start:
 
 
 ### CSPR Register Carry
+This flag in the **CSPR** flag is set when there is an overflow meaning that the register could not contain all of the data. 
+
+```armasm
+.global _start
+
+_start:
+	mov r0, #0xFFFFFFFF
+	mov r1, #5
+	adds r2, r1, r2
+```
 
 
 
