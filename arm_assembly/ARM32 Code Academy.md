@@ -102,7 +102,7 @@ list:
 # Arithmetic and CSPR flags 
 Some instructions automatically set flags within the **CSPR** register. This arithmetic section is an easy way to interact with the **CSPR** 
 
-## Example of adding
+## Example of Arithmetic
 ```armasm
 .global _start
 
@@ -114,8 +114,25 @@ _start:
 	sub r2, r0, r1 // r2 = r0 - r1
 ```
 
+## The CSPR Register
 Now, say we subtracted **5 - 7** you would get **-2**. In the **r2** register you would get the hex value of **0xFFFFFFFE** . If signed this is **-2** but if unsigned this would be **4294967294**. So how do we know which one it is? 
 
+The register will create the flags of **NZCVI** to represent the different flags of the operation results. The **N** in the series of flags stands for **negative**. So, when we do some kind of arithmetic we can use this value to tell if the result was either a negative decimal or a positive decimal.
+
+In order for this register to be set with the appropriate flags, you have to use instructions that sets it. So for subtraction, you would use **SUBS**. The reason we have to use a seperate instruction is because there is an additional instruction needed to load the data into the **CSPR** register which adds additional overhead.
+
+You should use **SUBS** when you know you are doing to be dealing with negative numbers or you don't know what the values are going to be like if loading it from some memory locations and not know what they are going to be.
+
+```asmarm
+.global _star
+
+_start:
+	mov r0, #5
+	mov r1, #7
+	subs r2, r0, r1
+	
+
+```
 
 
 
