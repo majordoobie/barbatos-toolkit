@@ -100,6 +100,24 @@ list:
 
 
 # Arithmetic and CSPR flags 
+Some instructions automatically set flags within the **CSPR** register. This arithmetic section is an easy way to interact with the **CSPR** 
+
+## Example of adding
+```armasm
+.global _start
+
+_start:
+	mov r0, #5
+	mov r1, #7
+	add r2, r0, r1 // r2 = r0 + r1
+	mul r2, r0, r1 // r2 = r0 * r1
+	sub r2, r0, r1 // r2 = r0 - r1
+```
+
+Now, say we subtracted **5 - 7** you would get **-2**. In the **r2** register you would get the hex value of **0xFFFFFFFE** . If signed this is **-2** but if unsigned this would be **4294967294**. So how do we know which one it is? 
+
+
+
 
 ---
 # Resources
