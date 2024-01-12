@@ -115,6 +115,7 @@ _start:
 ```
 
 ## The CSPR Register
+### CSPR Register Negative
 Now, say we subtracted **5 - 7** you would get **-2**. In the **r2** register you would get the hex value of **0xFFFFFFFE** . If signed this is **-2** but if unsigned this would be **4294967294**. So how do we know which one it is? 
 
 The register will create the flags of **NZCVI** to represent the different flags of the operation results. The **N** in the series of flags stands for **negative**. So, when we do some kind of arithmetic we can use this value to tell if the result was either a negative decimal or a positive decimal.
@@ -133,6 +134,11 @@ _start:
 	
 
 ```
+
+
+### CSPR Register Carry
+
+
 
 
 
