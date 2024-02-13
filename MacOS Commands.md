@@ -1,6 +1,28 @@
 up:: 
 Tags:: #code #howto  
 Related::
+=======
+---
+parent file:
+  - "[[Published]]"
+related: 
+creation data: 2020-12-05, 07:11
+tags:
+  - "#guides"
+  - "#os"
+---
+# MacOS Commands
+
+
+
+
+
+---
+# Resources
+ `[Example](Link)`
+ `[^Example]: Link    || [^Example]`
+ 
+
 # System Commands 
 ### scutil
 `scutil` is a binary that is used to configure settings via the terminal. It can also be used to retrieve information about the NIC

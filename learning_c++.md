@@ -1,3 +1,13 @@
+---
+parent file:
+  - "[[Published]]"
+related: 
+creation data: 2020-12-05, 07:10
+tags:
+  - "#guides"
+  - "#code"
+---
+
 # Learning C++
 ## Working with pointer playlist
 ### Introduction to pointers

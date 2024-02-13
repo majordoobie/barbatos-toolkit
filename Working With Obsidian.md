@@ -1,5 +1,13 @@
-up:: [[Root]]
-Tags:: #code #guides 
+---
+parent file:
+  - "[[Published]]"
+related: 
+creation data: 2023-12-05, 07:13
+tags:
+  - "#guides"
+  - "#env"
+---
+
 # Working With Obsidian
 
 ## Setting up Git
