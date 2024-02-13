@@ -1,8 +1,7 @@
 up:: 
 Tags:: #code #howto  
 Related::
-# Socket Commands
-## Getting IP information
+# System Commands 
 ### scutil
 `scutil` is a binary that is used to configure settings via the terminal. It can also be used to retrieve information about the NIC
 
@@ -31,8 +30,15 @@ Related::
 | `lsof -nP -iTCP:22`         | Only show TCP on port 22                                                  |
 | `lsof -nP -i@8.8.8.8`       | Only show output with quad 8 involved                                     |
 | `lsof -nP -iTCP@8.8.8.8:80` | Only show output with quad 8 on port 80                                   |
-| 
-|                                                                           |
+
+### ps
+
+| Command                              | Description                                                  |
+| ------------------------------------ | ------------------------------------------------------------ |
+| `ps -ax`                             | This is the base command to show all processes on the system |
+| `ps -axc`                            | Remove the full path of the command and only show the binary |
+| `ps -axE`                            | Show the environment variables set for the commands ran      |
+| `ps -axwwwo user,pid,ppid,%cpu,comm` | Closes I can get to the linux output                         |                                     |                                                              |
 
 
 
