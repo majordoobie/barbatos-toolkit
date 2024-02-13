@@ -17,11 +17,11 @@ For spaces to automatically be created you have to enable the keyboard shortcut 
 First, create all the spaces you want to be persistent. Pick 10 or 9
 
 Then to enable, go to Settings -> Keyboard Shortcuts -> Mission Control [^1]
-![[assets/images/Pasted image 20230413170827.png]]
+![](assets/images/Pasted%20image%2020230413170827.png)
 
 ## Setting Sticky App
 You can assign an app to a space by opening the app, and clicking on "assign to desktop"
-![[assets/images/Pasted image 20230413173240.png]]
+![](assets/images/Pasted%20image%2020230413173240.png)
 
 ## Tiling Window Manager Yabai
 Yabai ^[https://github.com/koekeishiya/yabai] is a window manager for macOS. It uses its own daemon to monitor for keyboard shortcuts to activate yabai functions. A neat thing about it is that yabai can use Brew Services ^[https://github.com/Homebrew/homebrew-services] to manage the two daemons for you. 
@@ -73,7 +73,7 @@ curl endpoint.com | pp_json
 ```
 ##### macos ^[https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/macos]
 This plugin provides a few utilities to interact between the terminal and finder app
-![[assets/images/Pasted image 20230420124153.png]]
+![](assets/images/Pasted image%2020230420124153.png)
 ![[Pasted image 20230420124208.png]]
 
 ##### docker
