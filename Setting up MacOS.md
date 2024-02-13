@@ -17,7 +17,7 @@ For spaces to automatically be created you have to enable the keyboard shortcut 
 First, create all the spaces you want to be persistent. Pick 10
 
 Then to enable, go to Settings -> Keyboard Shortcuts -> Mission Control [^1]
-![[Pasted image 20230413170827.png]]
+![[asPasted image 20230413170827.png]]
 
 ## Setting Sticky App
 You can assign an app to a space by opening the app, and clicking on "assign to desktop"
