@@ -1,3 +1,7 @@
+up:: 
+Tags:: #code #howto  
+Related::
+=======
 ---
 parent file:
   - "[[Published]]"
