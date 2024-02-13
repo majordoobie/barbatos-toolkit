@@ -14,7 +14,7 @@ tags:
 ## Setting Space Shortcut
 For spaces to automatically be created you have to enable the keyboard shortcut for the space to be moved `ctrl + #`
 
-First, create all the spaces you want to be persistent. Pick 10
+First, create all the spaces you want to be persistent. Pick 10 or 9
 
 Then to enable, go to Settings -> Keyboard Shortcuts -> Mission Control [^1]
 ![[assets/images/Pasted image 20230413170827.png]]
