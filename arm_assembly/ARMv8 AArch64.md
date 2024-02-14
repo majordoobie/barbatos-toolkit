@@ -1,6 +1,6 @@
 ---
 parent file:
-  - "[[Published]]"
+  - "[[../../Zettelkasten_old/Published]]"
 related:
   - "[[Introduction to Arm Assembly Basics]]"
 creation data: 2023-12-08, 07:20

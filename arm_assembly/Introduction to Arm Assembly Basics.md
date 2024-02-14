@@ -1,8 +1,8 @@
 ---
 parent file:
-  - "[[Published]]"
+  - "[[../../Zettelkasten_old/Published]]"
 related:
-  - "[[The Art of 64-Bit Assembly]]"
+  - "[[../../Zettelkasten_old/The Art of 64-Bit Assembly]]"
 creation data: 2023-12-06, 07:43
 tags:
   - "#guides"

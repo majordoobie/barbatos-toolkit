@@ -1,6 +1,6 @@
 ---
 parent file:
-  - "[[Published]]"
+  - "[[../Zettelkasten_old/Published]]"
 related: 
 creation data: 2020-12-05, 07:09
 tags:

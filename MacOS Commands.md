@@ -4,7 +4,7 @@ Related::
 =======
 ---
 parent file:
-  - "[[Published]]"
+  - "[[../Zettelkasten_old/Published]]"
 related: 
 creation data: 2020-12-05, 07:11
 tags:
