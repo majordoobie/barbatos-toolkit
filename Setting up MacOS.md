@@ -18,7 +18,7 @@ First, create all the spaces you want to be persistent. Pick 10 or 9
 
 Then to enable, go to Settings -> Keyboard Shortcuts -> Mission Control [^1]
 
-![[assets/images/Pasted image 20240213192551.png]]
+![](assets/images/Pasted%20image%2020240213192551.png)
 
 
 ![](assets/images/Pasted%20image%20240213145357.png)
