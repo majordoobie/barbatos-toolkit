@@ -30,7 +30,9 @@ You can assign an app to a space by opening the app, and clicking on "assign to 
 ## iTerm Settings
 I like to make iTerm as minimal as possible since I use tmux as a multiplexer this helps me use any operating system with the same keyboard shortcuts.
 
+### Set tmux to open
 
+![](assets/images/Pasted%20image%2020240213202314.png)
 
 
 
