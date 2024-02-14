@@ -43,6 +43,9 @@ You can make iTerm go zoom by following these settings
 
 ![](assets/images/Pasted%20image%2020240213202835.png)
 
+## Karabiner Elements
+
+
 ## Tiling Window Manager Yabai
 Yabai ^[https://github.com/koekeishiya/yabai] is a window manager for macOS. It uses its own daemon to monitor for keyboard shortcuts to activate yabai functions. A neat thing about it is that yabai can use Brew Services ^[https://github.com/Homebrew/homebrew-services] to manage the two daemons for you. 
 
