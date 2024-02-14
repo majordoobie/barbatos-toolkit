@@ -23,7 +23,9 @@ Then to enable, go to Settings -> Keyboard Shortcuts -> Mission Control [^1]
 
 ## Setting Sticky App
 You can assign an app to a space by opening the app, and clicking on "assign to desktop"
-![](assets/images/Pasted%20image%2020230413173240.png)
+
+![](assets/images/Pasted%20image%2020240213225352.png)
+
 
 # MacOS Apps
 
