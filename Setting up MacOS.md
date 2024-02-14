@@ -34,7 +34,10 @@ I like to make iTerm as minimal as possible since I use tmux as a multiplexer th
 
 ![](assets/images/Pasted%20image%2020240213202314.png)
 
+### Enable Metal rendering
+You can make iTerm go zoom by following these settings
 
+![](assets/images/Pasted%20image%2020240213202639.png)
 
 
 
