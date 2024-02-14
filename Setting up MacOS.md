@@ -44,7 +44,85 @@ You can make iTerm go zoom by following these settings
 ![](assets/images/Pasted%20image%2020240213202835.png)
 
 ## Karabiner Elements
-
+```json
+{
+    "description": "Press twice caps_lock to activate caps_lock & otherwise held_down and use as hyper",
+    "manipulators": [
+        {
+            "conditions": [
+                {
+                    "name": "caps_lock pressed",
+                    "type": "variable_if",
+                    "value": 1
+                }
+            ],
+            "from": {
+                "key_code": "caps_lock",
+                "modifiers": {
+                    "optional": [
+                        "any"
+                    ]
+                }
+            },
+            "to": [
+                {
+                    "key_code": "caps_lock"
+                }
+            ],
+            "type": "basic"
+        },
+        {
+            "from": {
+                "key_code": "caps_lock",
+                "modifiers": {
+                    "optional": [
+                        "any"
+                    ]
+                }
+            },
+            "parameters": {
+                "basic.to_if_held_down_threshold_milliseconds": 0
+            },
+            "to": [
+                {
+                    "set_variable": {
+                        "name": "caps_lock pressed",
+                        "value": 1
+                    }
+                }
+            ],
+            "to_delayed_action": {
+                "to_if_canceled": [
+                    {
+                        "set_variable": {
+                            "name": "caps_lock pressed",
+                            "value": 0
+                        }
+                    }
+                ],
+                "to_if_invoked": [
+                    {
+                        "set_variable": {
+                            "name": "caps_lock pressed",
+                            "value": 0
+                        }
+                    }
+                ]
+            },
+            "to_if_held_down": [
+                {
+                    "key_code": "left_command",
+                    "modifiers": [
+                        "left_control",
+                        "left_option"
+                    ]
+                }
+            ],
+            "type": "basic"
+        }
+    ]
+}
+```
 
 ## Tiling Window Manager Yabai
 Yabai ^[https://github.com/koekeishiya/yabai] is a window manager for macOS. It uses its own daemon to monitor for keyboard shortcuts to activate yabai functions. A neat thing about it is that yabai can use Brew Services ^[https://github.com/Homebrew/homebrew-services] to manage the two daemons for you. 
