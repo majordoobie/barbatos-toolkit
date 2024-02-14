@@ -9,25 +9,32 @@ tags:
   - "#env"
 ---
 
-# Setting up MacOS
+# MacOS Settings
 
 ## Setting Space Shortcut
 For spaces to automatically be created you have to enable the keyboard shortcut for the space to be moved `ctrl + #`
 
-First, create all the spaces you want to be persistent. Pick 10 or 9
+First, create all the spaces you want to be persistent. Pick 10
 
 Then to enable, go to Settings -> Keyboard Shortcuts -> Mission Control [^1]
 
 ![](assets/images/Pasted%20image%2020240213192551.png)
 
 
-![](assets/images/Pasted%20image%20240213145357.png)
-
-![](assets/images/Pasted%20image%2020230413170827.png)
-
 ## Setting Sticky App
 You can assign an app to a space by opening the app, and clicking on "assign to desktop"
 ![](assets/images/Pasted%20image%2020230413173240.png)
+
+# MacOS Apps
+
+## iTerm Settings
+I like to make iTerm as minimal as possible since I use tmux as a multiplexer this helps me use any operating system with the same keyboard shortcuts.
+
+
+
+
+
+
 
 ## Tiling Window Manager Yabai
 Yabai ^[https://github.com/koekeishiya/yabai] is a window manager for macOS. It uses its own daemon to monitor for keyboard shortcuts to activate yabai functions. A neat thing about it is that yabai can use Brew Services ^[https://github.com/Homebrew/homebrew-services] to manage the two daemons for you. 
