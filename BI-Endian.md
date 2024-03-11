@@ -2,7 +2,7 @@
 parent file:
   - "[[../Zettelkasten_old/Published]]"
 related:
-  - "[[arm_assembly/Introduction to Arm Assembly Basics]]"
+  - "[[../Zettelkasten/20231206 -- Introduction to Arm Assembly Basics]]"
 creation data: 2023-12-07, 14:42
 tags:
   - "#guides"
